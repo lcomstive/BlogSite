@@ -106,12 +106,34 @@ nav
 	height: 35px;
 	padding: 5px 10px;
 	background-color: var(--bg-secondary-colour);
+
+	display: flex;
+	position: relative;
+	gap: 20px;
+	justify-content: center;
 }
 
 nav > a, footer > a
 {
+	padding-top: 5px;
 	color: var(--colour);
 	border-radius: var(--border-radius);
+}
+
+#theme-switcher
+{
+	position: absolute;
+	right: 10px;
+	top: 5px;
+	bottom: 5px;
+}
+
+#logout
+{
+	position: absolute;
+	right: 45px;
+	top: 5px;
+	bottom: 5px;
 }
 
 #content

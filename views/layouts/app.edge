@@ -20,10 +20,12 @@
 			<a href="/">Home</a>
 			<a href="#">About</a>
 
-			<button id="theme-switcher" onClick="toggleTheme()">Theme</button>
+			<button id="theme-switcher" onClick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i></button>
 
 			@if(auth)
-			<button onClick="location.href='/logout'">Logout</button>
+			<button onClick="location.href='/logout'" id="logout">
+				<i class="fa-solid fa-arrow-right-from-bracket"></i>
+			</button>
 			@endif
 		</nav>
 

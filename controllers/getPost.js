@@ -4,10 +4,13 @@ module.exports = async (req, res) =>
 {
 	const post = await Post.findOne({ url: encodeURIComponent(req.params.title) })
 	if(post != undefined)
-		res.render('post', { post, auth: req.session.renderer })
-	else
 	{
-		console.log(`Could not find post '${req.params.title}'`)
-		res.redirect('/')
+		if(post.isActive || req.session.userID)
+		{
+			res.render('post', { post, auth: req.session.renderer })
+			return
+		}
 	}
+
+	res.redirect('/')
 }
