@@ -8,7 +8,7 @@
 	<h3>Profile</h3>
 	
 	<form action="/profile" method="POST">
-		<p class="userID">User ID: {{ auth.userID }}</p>
+		<p class="userID">User ID: {{ auth.userID }}</p><br><br>
 		<label for="username">Name</label>
 		<input type="text" id="username" name="username" value="{{ auth.username }}" disabled />
 

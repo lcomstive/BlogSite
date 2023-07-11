@@ -1,9 +1,16 @@
 @layout('layouts/app.edge')
 
+@section('styles')
+<link href="/styles/login.css" rel="stylesheet">
+@endsection
+
 @section('content')
 <form action="/login" method="POST">
-	<input type="text" name="username" placeholder="Username">
+	<label for="username">Name</label>
+	<input type="text" name="username" placeholder="Name">
+	
+	<label for="password">Password</label>
 	<input type="password" name="password" placeholder="Password">
-	<button>Login</button>
+	<button id="submit">Login</button>
 </form>
 @endsection
