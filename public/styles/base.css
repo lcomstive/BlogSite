@@ -17,6 +17,7 @@
 	--button-hover-colour: #6767ff;
 	--placeholder-colour: #a3a3a3;
 	--bg-secondary-colour: #212142;
+	--bg-secondary-colour-hover: #303062;
 }
 
 .theme-light
@@ -28,6 +29,7 @@
 	--button-hover-colour: #6767ff;
 	--placeholder-colour: #818181;
 	--bg-secondary-colour: #eaeaea;
+	--bg-secondary-colour-hover: #eaeaea;
 }
 
 html, body

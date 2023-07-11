@@ -35,6 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // Session setup
 app.use(expressSession({
 	resave: false,
+	secure: true,
 	saveUninitialized: false,
 	secret: process.env.EXPRESS_SECRET || 'SuperSecretExpressSecret',
 	store: mongoStore.create({ client: mongoose.connection.getClient() })

@@ -1,6 +1,6 @@
 const Post = require('../database/models/Post')
 
-const MaxPosts = 5
+const MaxPosts = 6
 
 module.exports = async (req, res) =>
 {
