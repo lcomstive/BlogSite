@@ -28,7 +28,9 @@ module.exports =
 
 	addNew: async (req, res) =>
 	{
-		await User.create(req.body)
+		let existing = await User.findOne({ username: req.body.username })
+		if(!existing)
+			await User.create(req.body)
 		res.redirect('/users')
 	}
 }
