@@ -9,18 +9,12 @@ const fileUpload = require('express-fileupload')
 
 require('dotenv').config()
 
-const ImageDir = path.join(__dirname, 'public/')
-const VideoExtensions = [ 'mp4', 'webm', 'ogg']
-
-// Database models
-const Post = require('./database/models/Post')
-
 // Set up express app
 const app = new express()
 
-app.use(fileUpload())
 app.use(bodyParser.json())
 app.use(express.static('public'))
+app.use(fileUpload({ createParentPath: true }))
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(expressEdge)

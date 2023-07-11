@@ -1,4 +1,9 @@
+const fs = require('fs')
+const path = require('path')
 const Post = require('../database/models/Post')
+
+const ImageDir = path.join(__dirname, '../public/')
+const VideoExtensions = [ 'mp4', 'webm', 'ogg']
 
 module.exports =
 {

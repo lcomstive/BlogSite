@@ -1,4 +1,9 @@
+const fs = require('fs')
+const path = require('path')
 const Post = require('../database/models/Post')
+
+const ImageDir = path.join(__dirname, '../public/')
+const VideoExtensions = [ 'mp4', 'webm', 'ogg']
 
 module.exports =
 {
@@ -27,8 +32,11 @@ module.exports =
 			// Save media to local filesystem
 			let imagePath = parentDir + req.files.headerMedia.name
 			
-			if(!fs.existsSync(imagePath))
-				await req.files.headerMedia.mv(ImageDir + imagePath, (err) => console.error(err))
+			if(!fs.existsSync(ImageDir + imagePath))
+			{
+				let response = await req.files.headerMedia.mv(ImageDir + imagePath)
+				console.log(`Saved file ${ImageDir + imagePath}:\n\n` + JSON.stringify(response))
+			}
 			
 			req.body.headerMedia = imagePath
 
