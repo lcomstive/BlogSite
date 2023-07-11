@@ -27,105 +27,18 @@ app.use(expressEdge)
 app.set('views', __dirname + '/views')
 
 // Routing
-app.get('/', async (req, res) =>
-{
-	let posts = await Post.find({}, /* Projections */ null, { limit: 5 })
-	res.render('index', { posts })
-})
-app.get('/posts', async (req, res) =>
-{
-	let posts = await Post.find({})
-	res.render('all-posts', { posts })
-})
+app.get('/', require('./controllers/homePage'))
+app.get('/posts', require('./controllers/allPosts'))
 
-app.get('/post/create', (req, res) => res.render('create-post'))
-app.post('/post/create', async (req, res) =>
-{
-	req.body.url = encodeURIComponent(req.body.title.replaceAll(' ', '-'))
+const newPost = require('./controllers/newPost')
+app.get('/post/new', newPost.get)
+app.post('/post/create', newPost.post)
 
-	req.body.isActive = req.body.isActive != undefined && req.body.isActive.toLowerCase() == 'on'
+app.get('/post/:title', require('./controllers/getPost'))
 
-	if(req.files && req.files.length > 0)
-		console.log('Files:')
-	for(let file in req.files)
-		console.log(file)
-
-	if(req.files?.headerMedia)
-	{
-		let parentDir = '/posts/' + req.body.url.replace(/[^a-z0-9 ]/gi, '_') + '/'
-
-		// Create parent directory if it doesn't exist
-		if(!fs.existsSync(ImageDir + parentDir))
-			fs.mkdirSync(ImageDir + parentDir, { recursive: true })
-
-		// Save media to local filesystem
-		let imagePath = parentDir + req.files.headerMedia.name
-		await req.files.headerMedia.mv(ImageDir + imagePath, (err) => console.error(err))
-		
-		req.body.headerMedia = imagePath
-
-		if(VideoExtensions.includes(imagePath.split('.').pop()))
-			req.body.headerMediaType = 'video'
-	}
-
-	Post.create(req.body)
-		.then(() => res.redirect(`/post/${req.body.url}`))
-		.catch(err => console.error(err))
-})
-
-app.get('/post/:title', async (req, res) =>
-{
-	const post = await Post.findOne({ url: encodeURIComponent(req.params.title) })
-	if(post != undefined)
-		res.render('post', { post })
-	else
-	{
-		console.log(`Could not find post '${req.params.title}'`)
-		res.redirect('/')
-	}
-})
-
-app.get('/post/edit/:title', async (req, res) =>
-{
-	const post = await Post.findOne({ url: encodeURIComponent(req.params.title) })
-	res.render('create-post', { post })
-})
-
-app.post('/post/update/:title', async (req, res) =>
-{
-	req.body.url = encodeURIComponent(req.body.title.replaceAll(' ', '-'))
-	req.body.content = req.body.content.replaceAll('\r\n', '<br>')
-										.replaceAll('\n', '<br>')
-
-	req.body.isActive = req.body.isActive != undefined && req.body.isActive.toLowerCase() == 'on'
-
-	console.log(req.body)
-
-	if(req.files?.headerMedia)
-	{
-		let parentDir = '/posts/' + req.body.url.replace(/[^a-z0-9 ]/gi, '_') + '/'
-
-		// Create parent directory if it doesn't exist
-		if(!fs.existsSync(ImageDir + parentDir))
-			fs.mkdirSync(ImageDir + parentDir, { recursive: true })
-
-		// Save media to local filesystem
-		let imagePath = parentDir + req.files.headerMedia.name
-		
-		if(!fs.existsSync(imagePath))
-			await req.files.headerMedia.mv(ImageDir + imagePath, (err) => console.error(err))
-		
-		req.body.headerMedia = imagePath
-
-		// Check if file extension is a video extension 
-		if(VideoExtensions.includes(imagePath.split('.').pop()))
-			req.body.headerMediaType = 'video'
-	}
-
-	Post.findOneAndUpdate({ url: encodeURIComponent(req.params.title) }, req.body)
-		.then(() => res.redirect(`/post/${req.body.url}`))
-		.catch(err => console.error(err))
-})
+const editPost = require('./controllers/updatePost')
+app.get('/post/edit/:title', editPost.get)
+app.post('/post/update/:title', editPost.post)
 
 // Set up MongoDB connection
 let mongoIP = process.env.MONGO_IP || "127.0.0.1"
