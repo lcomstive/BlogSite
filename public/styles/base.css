@@ -14,6 +14,7 @@
 	--bg-colour: #131317;
 	--accent-colour: #4040ff;
 	--button-colour: var(--colour);
+	--button-hover-colour: #6767ff;
 	--placeholder-colour: #a3a3a3;
 	--bg-secondary-colour: #212142;
 }
@@ -23,8 +24,9 @@
 	--colour: black;
 	--bg-colour: #ffffff;
 	--button-colour: white;
-	--accent-colour: #4040ff;
-	--placeholder-colour: #a3a3a3;
+	--accent-colour: #1919ff;
+	--button-hover-colour: #6767ff;
+	--placeholder-colour: #818181;
 	--bg-secondary-colour: #eaeaea;
 }
 
@@ -62,6 +64,8 @@ button
 	border: 1px solid var(--accent-colour);
 	border-radius: var(--border-radius);
 }
+
+button:hover { background-color: var(--button-hover-colour); }
 
 input, textarea
 {

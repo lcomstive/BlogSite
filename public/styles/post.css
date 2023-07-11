@@ -1,11 +1,13 @@
 .theme-dark
 {
 	--description-colour: #b1b0b0;
+	--draft-prompt-colour: #ff7474;
 }
 
 .theme-light
 {
 	--description-colour: #b1b0b0;
+	--draft-prompt-colour: #ff2020;
 }
 
 article
@@ -30,4 +32,16 @@ h1
 #post-content
 {
 	padding-top: 30px;
+}
+
+#headerMedia
+{
+	width: 100%;
+	height: auto;
+	border-radius: var(--border-radius);
+}
+
+.draft-prompt
+{
+	color: var(--draft-prompt-colour);
 }

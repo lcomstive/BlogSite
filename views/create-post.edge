@@ -1,27 +1,48 @@
 @layout('layouts/app.edge')
 
 @section('styles')
-<link href="/post-create.css" rel="stylesheet">
-
-<script>
-	textAreaAdjust = (element) =>
-	{
-		element.style.height = "1px";
-		element.style.height = (25 + element.scrollHeight) + "px";
-	}
-</script>
+<script src="/js/create-post.js"></script>
+<link href="/styles/post-create.css" rel="stylesheet">
 @endsection
 
 @section('content')
-<h1>Create Post</h1>
+<h1>
+	{{ post ? "Edit" : "Create" }} Post
+	@if(post)
+	<button id="discardButton" onclick="location.reload()">Discard Changes <i class="fa-solid fa-trash"></i></button>
+	@endif
+</h1>
 
 <div class="post-contents">
-	<form action="/post/create" method="POST">
-		<input type="text" name="title" placeholder="Title">
-		<input type="text" name="description" placeholder="Description">
-		<textarea name="content" placeholder="Content" onKeyUp="textAreaAdjust(this)"></textarea>
+	<form action={{ post ? `/post/update/${post.url}` : "/post/create" }} method="POST" encType="multipart/form-data" onsubmit="return ValidateForm()">
+		<input type="text" name="title" placeholder="Title" value="{{ post?.title ?? '' }}">
+		<input type="text" name="description" placeholder="Description" value="{{ post?.description ?? '' }}">
+		<section id="headerMediaContainer">
+			<p>Cover media</p>
+			<input type="file" id="headerMedia" name="headerMedia" accept="image/*, video/*">
+			<div class="preview" id="headerPreview"></div>
+		</section>
+		<textarea name="content" placeholder="Content" onKeyUp="TextAreaAdjust(this)">{{{ post?.content ?? "" }}}</textarea>
 		<br>
-		<button id="submitForm">Create</button>
+		<section id="postIsActive">
+			<label for="isActive">Active</label>
+			<input type="checkbox" name="isActive" id="isActive"
+				@if(post?.isActive ?? false)
+					checked
+				@endif
+			>
+		</section>
+		<br>
+		<button id="submitForm">{{ post ? "Update" : "Create" }}</button>
 	</form>
 </div>
+
+@if(post?.headerMedia)
+<script>
+	window.addEventListener('load', () => SetHeaderMediaToFilepath("{{ post.headerMedia }}"))
+
+	let contentElement = document.getElementsByName('content')[0]
+	contentElement.value = contentElement.value.replaceAll('<br>', '\n')
+</script>
+@endif
 @endsection

@@ -1,23 +1,25 @@
 @layout('layouts/app.edge')
 
 @section('styles')
-<link href="/post.css" rel="stylesheet">
+<link href="/styles/post.css" rel="stylesheet">
 @endsection
 
 @section('content')
+@if(!post.isActive)
+	<h3 class="draft-prompt">This is a draft!</h3>
+@endif
+
 <article>
 	<p class="publish-date">{{ post.createdAt.toDateString() }}</p>
+	@if(post.headerMedia && post.headerMediaType == 'video')
+		<video src="{{ post.headerMedia }}" id="headerMedia" controls></video>
+	@elseif(post.headerMedia)
+		<img src="{{ post.headerMedia }}" id="headerMedia">
+	@endif
 	<h1>{{ post.title }}</h1>
 	<p class="description">{{ post.description }}</h3>
 	<section id="post-content">
-		{{ post.content }}
+		{{{ post.content }}}
 	</section>
 </article>
-
-<script>
-	// Convert post-content from text contents to renderable DOM contents
-	let element = document.getElementById('post-content')
-	let contents = element.textContent
-	element.innerHTML = contents
-</script>
 @endsection

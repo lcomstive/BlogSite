@@ -1,7 +1,7 @@
 @layout('layouts/app.edge')
 
 @section('styles')
-<link href="/index.css" rel="stylesheet">
+<link href="/styles/index.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -23,10 +23,15 @@
 	<p>Recent posts:</p>
 	<section id="recent-posts">
 		@each(post in posts)
-			<a class="post-preview" href="/post/{{ post.url }}">
-				<h2 class="post-title">{{ post.title }}</h2>
-				<p class="post-description">{{ post.description }}</p>
-			</a>
+			@if(post.isActive)
+				<a class="post-preview" href="/post/{{ post.url }}">
+					<p class="publish-date">{{ post.createdAt.toDateString() }}</p>
+					<h2 class="post-title">{{ post.title }}</h2>
+					<p class="post-description">{{ post.description }}</p>
+				</a>
+			@endif
 		@endeach
+
+		<a id="see-more" href="/posts">See more <i class="fa-solid fa-arrow-right"></i></a>
 	</section>
 @endsection

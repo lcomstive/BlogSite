@@ -6,7 +6,11 @@
 
 		<title>Blog Prototype</title>
 
-		<link href="/style.css" rel="stylesheet">
+		<script src="/js/themes.js"></script>
+		<link href="/styles/base.css" rel="stylesheet">
+
+		<!-- Font Awesome -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
 		@!section('styles')
 	</head>
@@ -16,7 +20,7 @@
 			<a href="/">Home</a>
 			<a href="#">About</a>
 
-			<button id="theme-switcher" onClick="toggleTheme()"></button>
+			<button id="theme-switcher" onClick="toggleTheme()">Theme</button>
 		</nav>
 
 		<!-- Content -->
@@ -32,7 +36,5 @@
 			<p>Temporary Links</p>
 			<a href="/post/create">Create post</a>
 		</footer>
-	
-		<script src="/themes.js"></script>
 	</body>
 </html>

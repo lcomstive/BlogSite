@@ -4,8 +4,6 @@ setTheme = (theme) =>
 {
 	localStorage.setItem('theme', theme);
 	document.documentElement.className = `theme-${theme}`
-
-	document.getElementById('theme-switcher').innerHTML = theme == 'dark' ? '☀️' : '🌙';
 }
 
 toggleTheme = () => setTheme(localStorage.getItem('theme') === 'dark' ? 'light' : 'dark')

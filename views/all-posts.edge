@@ -1,0 +1,20 @@
+@layout('layouts/app.edge')
+
+@section('styles')
+<link href="/styles/index.css" rel="stylesheet">
+@endsection
+
+@section('content')
+	<h1>All Posts</h1>
+	<section id="recent-posts">
+		@each(post in posts)
+			@if(post.isActive)
+				<a class="post-preview" href="/post/{{ post.url }}">
+					<p class="publish-date">{{ post.createdAt.toLocaleDateString() }}</p>
+					<h2 class="post-title">{{ post.title }}</h2>
+					<p class="post-description">{{ post.description }}</p>
+				</a>
+			@endif
+		@endeach
+	</section>
+@endsection

@@ -5,6 +5,13 @@ const PostSchema = new mongoose.Schema({
 	description: String,
 	content: String,
 	url: String,
+	headerMedia: String,
+	headerMediaType: String,
+	isActive:
+	{
+		type: Boolean,
+		default: true
+	},
 	createdAt:
 	{
 		type: Date,
