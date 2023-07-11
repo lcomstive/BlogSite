@@ -66,10 +66,10 @@ textarea
 
 #headerMediaContainer .preview img, #headerMediaContainer .preview video
 {
-	width: 90%;
-	height: auto;
+	width: auto;
+	max-height: 200px;
 	border-radius: var(--border-radius);
-	margin: 20px 5%;
+	margin: 10px;
 }
 
 #headerMediaContainer .preview video
@@ -104,4 +104,44 @@ textarea
 {
 	position: absolute;
 	left: 0;
+}
+
+#contentEditorContainer
+{
+	display: block;
+	position: relative;
+	border: 1px solid var(--accent-colour);
+	border-radius: var(--border-radius);
+	padding: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+#contentEditorContainer > textarea { background-color: var(--bg-secondary-colour); }
+
+#contentEditorContainer > textarea, #contentEditorContainer > span
+{
+	width: 100%;
+	outline: none;
+	border: none;
+	margin: 0;
+	padding: 0;
+	display: none;
+	background: none;
+}
+
+#contentEditorContainer > .active { display: block; }
+
+#previewToggle
+{
+	margin-top: 25px;
+	width: 100%;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	background-color: var(--bg-secondary-colour);
+}
+
+#previewToggle.active
+{
+	background-color: var(--accent-colour);
 }

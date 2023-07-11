@@ -25,8 +25,14 @@
 			<input type="file" id="headerMedia" name="headerMedia" accept="image/*, video/*">
 			<div class="preview" id="headerPreview"></div>
 		</section>
-		<textarea name="content" placeholder="Content" id="contentEditor">{{{ post?.content ?? "" }}}</textarea>
-		<div id="contentPreview"></div>
+
+		<!-- Content Editor -->
+		<button onclick="TogglePreview()" type="button" id="previewToggle">Preview</button>
+		<span id="contentEditorContainer">
+			<textarea name="content" placeholder="Content" id="contentEditor" class="active">{{{ post?.content ?? "" }}}</textarea>
+			<span id="contentPreview"></span>
+		</span>
+
 		<br>
 		<section id="postIsActive">
 			<label for="isActive">Active</label>

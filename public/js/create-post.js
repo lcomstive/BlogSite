@@ -8,9 +8,13 @@ var contentPreviewer = null
 
 OnContentChanged = () =>
 {
+	let scrollPos = document.documentElement.scrollTop
+
 	// Adjusts size of the textarea containing article contents
 	contentEditor.style.height = "1px";
 	contentEditor.style.height = (25 + contentEditor.scrollHeight) + "px";
+
+	document.documentElement.scrollTop = scrollPos
 
 	// Convert content markdown to HTML and insert to content preview panel
 	contentPreviewer.innerHTML = marked.parse(contentEditor.value)
@@ -105,6 +109,13 @@ SetHeaderMediaToFilepath = (filepath) =>
 		UpdateHeaderPreview(/* clear */ true)
 	}
 	headerMediaPreview.appendChild(removeButton)
+}
+
+TogglePreview = () =>
+{
+	document.getElementById('previewToggle').classList.toggle('active')
+	document.getElementById('contentEditor').classList.toggle('active')
+	document.getElementById('contentPreview').classList.toggle('active')
 }
 
 window.addEventListener('load', () =>
