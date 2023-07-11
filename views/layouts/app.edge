@@ -7,12 +7,14 @@
 		<title>Blog Prototype</title>
 
 		<link href="/style.css" rel="stylesheet">
+
+		@!section('styles')
 	</head>
 	<body>
 		<!-- Navigation -->
 		<nav>
 			<a href="/">Home</a>
-			<a href="/about">About</a>
+			<a href="#">About</a>
 
 			<button id="theme-switcher" onClick="toggleTheme()"></button>
 		</nav>
@@ -26,8 +28,11 @@
 		<footer>
 			<p>Created with 💖</p>
 			<p>2023</p>
+			<hr>
+			<p>Temporary Links</p>
+			<a href="/post/create">Create post</a>
 		</footer>
 	
-		<script src="themes.js"></script>
+		<script src="/themes.js"></script>
 	</body>
-</html> 
+</html>

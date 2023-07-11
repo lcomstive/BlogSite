@@ -1,0 +1,33 @@
+.theme-dark
+{
+	--description-colour: #b1b0b0;
+}
+
+.theme-light
+{
+	--description-colour: #b1b0b0;
+}
+
+article
+{
+	margin: 0;
+}
+
+h1
+{
+	margin: 0;
+	font-size: calc(var(--font-size) * 2);
+}
+
+.description, .publish-date
+{
+	margin: 10px 0;
+	font-weight: 600;
+	font-size: var(--font-size);
+	color: var(--description-colour);
+}
+
+#post-content
+{
+	padding-top: 30px;
+}

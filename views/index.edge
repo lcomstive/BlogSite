@@ -1,5 +1,9 @@
 @layout('layouts/app.edge')
 
+@section('styles')
+<link href="/index.css" rel="stylesheet">
+@endsection
+
 @section('content')
 	<!-- Page Header -->
 	<header class="masthead">
@@ -15,4 +19,14 @@
 			</div>
 		</div>
 	</header>
+
+	<p>Recent posts:</p>
+	<section id="recent-posts">
+		@each(post in posts)
+			<a class="post-preview" href="/post/{{ post.url }}">
+				<h2 class="post-title">{{ post.title }}</h2>
+				<p class="post-description">{{ post.description }}</p>
+			</a>
+		@endeach
+	</section>
 @endsection

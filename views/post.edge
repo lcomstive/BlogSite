@@ -1,0 +1,23 @@
+@layout('layouts/app.edge')
+
+@section('styles')
+<link href="/post.css" rel="stylesheet">
+@endsection
+
+@section('content')
+<article>
+	<p class="publish-date">{{ post.createdAt.toDateString() }}</p>
+	<h1>{{ post.title }}</h1>
+	<p class="description">{{ post.description }}</h3>
+	<section id="post-content">
+		{{ post.content }}
+	</section>
+</article>
+
+<script>
+	// Convert post-content from text contents to renderable DOM contents
+	let element = document.getElementById('post-content')
+	let contents = element.textContent
+	element.innerHTML = contents
+</script>
+@endsection

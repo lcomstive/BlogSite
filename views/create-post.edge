@@ -1,0 +1,27 @@
+@layout('layouts/app.edge')
+
+@section('styles')
+<link href="/post-create.css" rel="stylesheet">
+
+<script>
+	textAreaAdjust = (element) =>
+	{
+		element.style.height = "1px";
+		element.style.height = (25 + element.scrollHeight) + "px";
+	}
+</script>
+@endsection
+
+@section('content')
+<h1>Create Post</h1>
+
+<div class="post-contents">
+	<form action="/post/create" method="POST">
+		<input type="text" name="title" placeholder="Title">
+		<input type="text" name="description" placeholder="Description">
+		<textarea name="content" placeholder="Content" onKeyUp="textAreaAdjust(this)"></textarea>
+		<br>
+		<button id="submitForm">Create</button>
+	</form>
+</div>
+@endsection
