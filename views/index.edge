@@ -5,23 +5,8 @@
 @endsection
 
 @section('content')
-	<!-- Page Header -->
-	<header class="masthead">
-	<div class="overlay"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-8 col-md-10 mx-auto">
-					<div class="site-heading">
-					<h1>Hi!</h1>
-					<span class="subheading">Edge Layout Example</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
-
-	<p>Recent posts:</p>
-	<section id="recent-posts">
+	<h3>Recent posts</h3>
+	<section class="posts-list">
 		@each(post in posts)
 			@if(post.isActive)
 				<a class="post-preview" href="/post/{{ post.url }}">
@@ -34,4 +19,21 @@
 
 		<a id="see-more" href="/posts">See more <i class="fa-solid fa-arrow-right"></i></a>
 	</section>
+
+	@if(auth)
+	<h3>Drafts</h3>
+	<section class="posts-list">
+		@each(post in posts)
+			@if(!post.isActive)
+				<a class="post-preview" href="/post/{{ post.url }}">
+					<p class="publish-date">{{ post.createdAt.toDateString() }}</p>
+					<h2 class="post-title">{{ post.title }}</h2>
+					<p class="post-description">{{ post.description }}</p>
+				</a>
+			@endif
+		@endeach
+
+		<a id="see-more" href="/drafts">See more <i class="fa-solid fa-arrow-right"></i></a>
+	</section>
+	@endif
 @endsection

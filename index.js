@@ -1,38 +1,18 @@
 const fs = require('fs')
-const path = require('path')
 const https = require('https')
+const edge = require('edge.js')
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const expressEdge = require('express-edge')
+const mongoStore = require('connect-mongo')
 const fileUpload = require('express-fileupload')
+const expressSession = require('express-session')
+
+const auth = require('./middleware/auth')
+const User = require('./database/models/User')
 
 require('dotenv').config()
-
-// Set up express app
-const app = new express()
-
-app.use(bodyParser.json())
-app.use(express.static('public'))
-app.use(fileUpload({ createParentPath: true }))
-app.use(bodyParser.urlencoded({ extended: true }))
-
-app.use(expressEdge)
-app.set('views', __dirname + '/views')
-
-// Routing
-app.get('/', require('./controllers/homePage'))
-app.get('/posts', require('./controllers/allPosts'))
-
-const newPost = require('./controllers/newPost')
-app.get('/post/new', newPost.get)
-app.post('/post/create', newPost.post)
-
-app.get('/post/:title', require('./controllers/getPost'))
-
-const editPost = require('./controllers/updatePost')
-app.get('/post/edit/:title', editPost.get)
-app.post('/post/update/:title', editPost.post)
 
 // Set up MongoDB connection
 let mongoIP = process.env.MONGO_IP || "127.0.0.1"
@@ -41,6 +21,47 @@ let dbName = process.env.MONGO_DBNAME || 'blog'
 mongoose.connect(`mongodb://${mongoIP}:${mongoPort}/${dbName}`, { useNewUrlParser: true })
 	.then(() => console.log('Connected to Mongo'))
 	.catch(err => console.error('Failed to connect to Mongo database', err))
+
+// Set up express app
+const app = new express()
+
+app.use(expressEdge)
+app.use(bodyParser.json())
+app.use(express.static('public'))
+app.set('views', __dirname + '/views')
+app.use(fileUpload({ createParentPath: true }))
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// Session setup
+app.use(expressSession({
+	resave: false,
+	saveUninitialized: false,
+	secret: process.env.EXPRESS_SECRET || 'SuperSecretExpressSecret',
+	store: mongoStore.create({ client: mongoose.connection.getClient() })
+}))
+
+// Routing
+app.get('/', require('./controllers/homePage'))
+
+const allPosts = require('./controllers/allPosts')
+app.get('/posts', (req, res) => allPosts(req, res, 'allPosts'))
+app.get('/drafts', (req, res) => allPosts(req, res, 'allDrafts'))
+
+const newPost = require('./controllers/newPost')
+app.get('/post/new', auth, newPost.get)
+app.post('/post/create', auth, newPost.post)
+
+app.get('/post/:title', require('./controllers/getPost'))
+
+const editPost = require('./controllers/updatePost')
+app.get('/post/edit/:title', auth, editPost.get)
+app.post('/post/update/:title', auth, editPost.post)
+
+const userLogin = require('./controllers/userLogin')
+app.get('/login', userLogin.get)
+app.post('/login', userLogin.post)
+
+app.get('/logout', auth, require('./controllers/userLogout'))
 
 // Start listening
 let port = process.env.PORT || 3000

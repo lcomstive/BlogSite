@@ -45,4 +45,11 @@
 	contentElement.value = contentElement.value.replaceAll('<br>', '\n')
 </script>
 @endif
+
+<script>
+	// Change submission button based on active checkbox
+	const submitButton = document.getElementById('submitForm')
+	document.getElementById('isActive').addEventListener('change', (event) =>
+		submitButton.innerHTML = event.currentTarget.checked ? 'Publish Post' : 'Save Draft')
+</script>
 @endsection

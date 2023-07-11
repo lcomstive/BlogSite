@@ -11,6 +11,9 @@
 
 <article>
 	<p class="publish-date">{{ post.createdAt.toDateString() }}</p>
+	@if(auth)
+	<button onClick="location.href='/post/edit/{{ post.url }}'">Edit</button>
+	@endif
 	@if(post.headerMedia && post.headerMediaType == 'video')
 		<video src="{{ post.headerMedia }}" id="headerMedia" controls></video>
 	@elseif(post.headerMedia)

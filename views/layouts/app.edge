@@ -21,6 +21,10 @@
 			<a href="#">About</a>
 
 			<button id="theme-switcher" onClick="toggleTheme()">Theme</button>
+
+			@if(auth)
+			<button onClick="location.href='/logout'">Logout</button>
+			@endif
 		</nav>
 
 		<!-- Content -->
@@ -33,8 +37,12 @@
 			<p>Created with 💖</p>
 			<p>2023</p>
 			<hr>
-			<p>Temporary Links</p>
-			<a href="/post/new">Create post</a>
+
+			@if(auth)
+			<a href="/post/new">New post</a>
+			@else
+			<a href="/login">Login</a>
+			@endif
 		</footer>
 	</body>
 </html>

@@ -22,7 +22,7 @@
 	--post-description-colour: #3d3d3d;
 }
 
-#recent-posts
+.posts-list
 {
 	display: flex;
 	flex-wrap: wrap;
