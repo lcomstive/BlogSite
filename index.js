@@ -62,6 +62,12 @@ const userLogin = require('./controllers/userLogin')
 app.get('/login', userLogin.get)
 app.post('/login', userLogin.post)
 
+const userController = require('./controllers/users')
+app.get('/profile', auth, userController.get)
+app.post('/profile', auth, userController.update)
+app.get('/users', auth, userController.getAll)
+app.post('/users', auth, userController.addNew)
+
 app.get('/logout', auth, require('./controllers/userLogout'))
 
 // Start listening

@@ -15,6 +15,7 @@
 	--accent-colour: #4040ff;
 	--button-colour: var(--colour);
 	--button-hover-colour: #6767ff;
+	--button-disabled-colour: #3f3f8d;
 	--placeholder-colour: #a3a3a3;
 	--bg-secondary-colour: #212142;
 	--bg-secondary-colour-hover: #303062;
@@ -27,6 +28,7 @@
 	--button-colour: white;
 	--accent-colour: #1919ff;
 	--button-hover-colour: #6767ff;
+	--button-disabled-colour: #4646a8;
 	--placeholder-colour: #818181;
 	--bg-secondary-colour: #eaeaea;
 	--bg-secondary-colour-hover: #eaeaea;
@@ -61,9 +63,16 @@ button
 	background-color: var(--accent-colour);
 	border: 1px solid var(--accent-colour);
 	border-radius: var(--border-radius);
+
+	transition: var(--transition);
 }
 
 button:hover { background-color: var(--button-hover-colour); }
+button:disabled
+{
+	border-color: var(--button-disabled-colour);
+	background-color: var(--button-disabled-colour);
+}
 
 input, textarea
 {
@@ -73,6 +82,12 @@ input, textarea
 	background: var(--bg-secondary-colour);
 	border-radius: var(--border-radius);
 	border: 1px solid var(--bg-colour);
+	outline: none;
+}
+
+input:disabled, textarea:disabled
+{
+	color: var(--placeholder-colour);
 }
 
 textarea
@@ -114,6 +129,11 @@ footer
 	padding: 5px 20px;
 	padding-bottom: 30px;
 	background-color: var(--bg-secondary-colour);
+}
+
+footer > a
+{
+	display: block;
 }
 
 @media screen and (max-width: 650px)

@@ -1,0 +1,30 @@
+@layout('layouts/app.edge')
+
+@section('styles')
+<link href="/styles/users.css" rel="stylesheet">
+@endsection
+
+@section('content')
+	<h3>Profile</h3>
+	
+	<form action="/profile" method="POST">
+		<p class="userID">User ID: {{ auth.userID }}</p>
+		<label for="username">Name</label>
+		<input type="text" id="username" name="username" value="{{ auth.username }}" disabled />
+
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password" onkeyup="ValidatePassword(this)" />
+
+		<button id="submit" disabled>Update</button>
+	</form>
+
+	<script>
+	ValidatePassword = (element) =>
+	{
+		let submitButton = document.getElementById('submit')
+		let pass = element.value
+
+		submitButton.disabled = pass == '' || pass.length <= 6
+	}
+	</script>
+@endsection
