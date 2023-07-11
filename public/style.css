@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend');
+
+:root
+{	
+	--font-size: 18px;
+	--content-width: 600px;
+	--transition: all 0.2s ease-in-out;
+}
+
+.theme-dark
+{
+	--colour: white;
+	--bg-colour: #131317;
+	--bg-secondary-colour: #212142;
+	--accent-colour: #4040ff;
+	--button-colour: var(--colour);
+}
+
+.theme-light
+{
+	--colour: black;
+	--bg-colour: #ffffff;
+	--button-colour: white;
+	--accent-colour: #4040ff;
+	--bg-secondary-colour: #eaeaea;
+}
+
+.prevent-transitions { transition-duration: 0; }
+
+html, body
+{
+	margin: 0;
+
+	color: var(--colour);
+	background-color: var(--bg-colour);
+
+	font-family: 'Lexend', sans-serif;
+	font-size: var(--font-size);
+
+	transition: var(--transition);
+}
+
+nav
+{
+	height: 35px;
+	padding: 5px 10px;
+	background-color: var(--bg-secondary-colour);
+}
+
+nav > a
+{
+	color: var(--colour);
+	border-radius: 2.5px;
+}
+
+button
+{
+	color: var(--button-colour);
+	background-color: var(--accent-colour);
+	border: 1px solid var(--accent-colour);
+	border-radius: 2.5px;
+}
+
+#content
+{
+	padding: 50px 0;
+	width: var(--content-width);
+	margin: 0 calc((100vw - var(--content-width)) * 0.5);
+}
+
+footer
+{
+	left: 0;
+	bottom: 0;
+	width: 100vw;
+	padding: 5px 20px;
+	background-color: var(--bg-secondary-colour);
+}
+
+@media screen and (max-width: 650px)
+{
+	#content
+	{
+		width: 100%;
+		margin: 0 30px;
+	}
+}

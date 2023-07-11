@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<title>Blog Prototype</title>
+
+		<link href="/style.css" rel="stylesheet">
+	</head>
+	<body>
+		<!-- Navigation -->
+		<nav>
+			<a href="/">Home</a>
+			<a href="/about">About</a>
+
+			<button id="theme-switcher" onClick="toggleTheme()"></button>
+		</nav>
+
+		<!-- Content -->
+		<section id="content">
+			@!section('content')
+		</section>
+
+		<!-- Footer -->
+		<footer>
+			<p>Created with 💖</p>
+			<p>2023</p>
+		</footer>
+	
+		<script src="themes.js"></script>
+	</body>
+</html> 
