@@ -3,6 +3,9 @@
 @section('styles')
 <script src="/js/create-post.js"></script>
 <link href="/styles/post-create.css" rel="stylesheet">
+
+<!-- Marked - Markdown parser -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 @endsection
 
 @section('content')
@@ -22,7 +25,8 @@
 			<input type="file" id="headerMedia" name="headerMedia" accept="image/*, video/*">
 			<div class="preview" id="headerPreview"></div>
 		</section>
-		<textarea name="content" placeholder="Content" onKeyUp="TextAreaAdjust(this)">{{{ post?.content ?? "" }}}</textarea>
+		<textarea name="content" placeholder="Content" id="contentEditor">{{{ post?.content ?? "" }}}</textarea>
+		<div id="contentPreview"></div>
 		<br>
 		<section id="postIsActive">
 			<label for="isActive">Active</label>

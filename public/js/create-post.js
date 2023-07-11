@@ -3,11 +3,17 @@ const VideoExtensions = [ 'mp4', 'webm', 'ogg']
 var headerMediaFileChooser = null
 var headerMediaPreview = null
 
-// Adjusts size of the textarea containing article contents
-TextAreaAdjust = (element) =>
+var contentEditor = null
+var contentPreviewer = null
+
+OnContentChanged = () =>
 {
-	element.style.height = "1px";
-	element.style.height = (25 + element.scrollHeight) + "px";
+	// Adjusts size of the textarea containing article contents
+	contentEditor.style.height = "1px";
+	contentEditor.style.height = (25 + contentEditor.scrollHeight) + "px";
+
+	// Convert content markdown to HTML and insert to content preview panel
+	contentPreviewer.innerHTML = marked.parse(contentEditor.value)
 }
 
 GetFileSize = (bytes) =>
@@ -103,6 +109,16 @@ SetHeaderMediaToFilepath = (filepath) =>
 
 window.addEventListener('load', () =>
 {
+	marked.use({
+		mangle: false,
+		headerIds: false
+	})
+	contentEditor = document.getElementById('contentEditor')
+	contentPreviewer = document.getElementById('contentPreview')
+
+	contentEditor.addEventListener('keyup', (event) => OnContentChanged())
+	OnContentChanged()
+
 	headerMediaFileChooser = document.getElementById('headerMedia')
 	headerMediaPreview = document.getElementById('headerPreview')
 

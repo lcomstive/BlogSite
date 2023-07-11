@@ -46,18 +46,14 @@ html, body
 	transition: var(--transition);
 }
 
-nav
+img
 {
-	height: 35px;
-	padding: 5px 10px;
-	background-color: var(--bg-secondary-colour);
+	width: 100%;
+	height: auto;
 }
 
-nav > a, footer > a
-{
-	color: var(--colour);
-	border-radius: var(--border-radius);
-}
+a { color: var(--accent-colour); }
+a:hover { color: var(--button-hover-colour); }
 
 button
 {
@@ -89,6 +85,19 @@ textarea
 
 input:focus, textarea:focus { border-color: var(--accent-colour); }
 input::placeholder, textarea::placeholder { color: var(--placeholder-colour); }
+
+nav
+{
+	height: 35px;
+	padding: 5px 10px;
+	background-color: var(--bg-secondary-colour);
+}
+
+nav > a, footer > a
+{
+	color: var(--colour);
+	border-radius: var(--border-radius);
+}
 
 #content
 {

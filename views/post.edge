@@ -2,6 +2,9 @@
 
 @section('styles')
 <link href="/styles/post.css" rel="stylesheet">
+
+<!-- Marked - Markdown parser -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 @endsection
 
 @section('content')
@@ -21,8 +24,10 @@
 	@endif
 	<h1>{{ post.title }}</h1>
 	<p class="description">{{ post.description }}</h3>
-	<section id="post-content">
-		{{{ post.content }}}
-	</section>
+	<section id="post-content"></section>
 </article>
+
+<script>
+	document.getElementById('post-content').innerHTML = marked.parse(`{{{ post.content }}}`)
+</script>
 @endsection
