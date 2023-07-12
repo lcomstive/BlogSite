@@ -10,7 +10,7 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		
 		<link href="/styles/themes.min.css" rel="stylesheet">
-		<link href="/styles/base.min.css" rel="stylesheet">
+		<link href="/styles/app.css" rel="stylesheet">
 
 		<!-- Font Awesome - Preload to load asynchronously -->
 		<link
@@ -23,7 +23,7 @@
 		<!-- Navigation -->
 		<nav>
 			<a href="/">Home</a>
-			<a href="#">About</a>
+			<a href="/posts">Posts</a>
 
 			@if(auth)
 			<button onClick="location.href='/logout'" id="logout">
@@ -59,17 +59,15 @@
 			// Called immediately at script initialisation/load
 			const DefaultTheme = 'Dark'
 			const DefaultFont = 'Open Sans'
+			const DefaultFontSize = 18
 
-			let theme = localStorage.getItem('theme')
-			if(theme === null)
-				localStorage.setItem('theme', theme = DefaultTheme)
-
-			let font = localStorage.getItem('font')
-			if(font === null)
-				localStorage.setItem('font', font = DefaultFont)
+			let theme = localStorage.getItem('theme') ?? DefaultTheme
+			let font = localStorage.getItem('font') ?? DefaultFont
+			let fontSize = localStorage.getItem('fontSize') ?? DefaultFontSize
 
 			document.documentElement.className = `theme-${theme.toLowerCase()}`
-			document.body.style.fontFamily = font
+			document.body.style.fontFamily = `${font}, sans-serif`
+			document.body.style.fontSize = fontSize + 'px'
 
 			document.head.innerHTML += `<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
 							href="https://fonts.googleapis.com/css2?family=${encodeURIComponent(font)}&display=swap">`

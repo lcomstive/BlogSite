@@ -25,6 +25,7 @@
 	padding: var(--post-padding);
 	border-radius: var(--border-radius);
 	border: 1px solid var(--button-colour);
+	padding-bottom: 2em;
 }
 
 .post-preview:hover

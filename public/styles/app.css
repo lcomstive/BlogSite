@@ -1,8 +1,6 @@
 :root
 {
 	--content-width: 1000px;
-	--border-radius: 2px;
-	--transition: all 0.2s ease-in-out;
 }
 
 html, body
@@ -11,8 +9,6 @@ html, body
 
 	color: var(--colour);
 	background-color: var(--bg-colour);
-
-	font-size: var(--font-size);
 
 	overflow-x: hidden;
 }
@@ -96,7 +92,11 @@ nav > a, footer > a
 	border-bottom: 0px solid var(--accent-colour);
 }
 
-nav > a { height: 100%; }
+nav > a
+{
+	
+	height: 100%;
+}
 nav > a:hover
 {
 	transition: var(--transition);
