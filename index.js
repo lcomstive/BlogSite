@@ -70,6 +70,8 @@ app.post('/users', auth, userController.addNew)
 
 app.get('/logout', auth, require('./controllers/userLogout'))
 
+app.get('/settings', (req, res) => res.render('settings', { auth: req.session.renderer }))
+
 // Start listening
 let port = process.env.PORT || 3000
 let sslKey = process.env.SSL_KEY

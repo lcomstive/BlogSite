@@ -1,0 +1,25 @@
+.theme-dark
+{
+	--colour: white;
+	--bg-colour: #0c0c0d;
+	--accent-colour: #4040ff;
+	--button-colour: #858585;
+	--button-hover-colour: #ffffff;
+	--button-disabled-colour: #3f3f8d;
+	--placeholder-colour: #a3a3a3;
+	--bg-secondary-colour: #25252e;
+	--bg-secondary-colour-hover: #242424;
+}
+
+.theme-light
+{
+	--colour: black;
+	--bg-colour: #ffffff;
+	--button-colour: #b7b7b7;
+	--accent-colour: #1919ff;
+	--button-hover-colour: #2c2c2c;
+	--button-disabled-colour: #4646a8;
+	--placeholder-colour: #6b6b6b;
+	--bg-secondary-colour: #eaeaea;
+	--bg-secondary-colour-hover: #f3f3f3;
+}

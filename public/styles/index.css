@@ -25,8 +25,6 @@
 	padding: var(--post-padding);
 	border-radius: var(--border-radius);
 	border: 1px solid var(--button-colour);
-
-	transition: var(--transition);
 }
 
 .post-preview:hover

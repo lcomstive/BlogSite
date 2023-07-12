@@ -1,0 +1,102 @@
+@layout('layouts/app.edge')
+
+@section('styles')
+<link href="/styles/users.min.css" rel="stylesheet">
+@endsection
+
+@section('content')
+	<section id="settingsContent">
+		<h3>Profile</h3>
+		
+		<section>
+			<label for="theme">Theme</label>
+			<select name="theme" id="themes"></select>
+		</section>
+
+		<section>
+			<label for="font">Font</label>
+			<select name="font" id="fonts"></select>
+		</section>
+
+		<section>
+			<label>Font Size</label>
+			<button onclick="ModifyFontSize(-1)">-</button>
+			<input type="number" onchange="SetFontSize(this.value)" id="fontSize">
+			<button onclick="ModifyFontSize( 1)">+</button>
+		</section>
+
+		<button onclick="SaveSettings()">Save Settings</button>
+	<section>
+	<script>
+	const GoogleFontURL = 'https://fonts.googleapis.com/css2?family={fontName}&display=swap' 
+	const Themes = [ 'Light', 'Dark' ]
+	const Fonts =
+	[
+		'Open Sans',
+		'Redacted',
+		'Inconsolata',
+		'Lexend'
+	]
+
+	const FontSizeBounds = { min: 14, max: 32 }
+
+	const FontSize  = document.getElementById('fontSize')
+	const FontSelector  = document.getElementById('fonts')
+	const ThemeSelector = document.getElementById('themes')
+
+	const FontHTMLRaw = `<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
+							href="https://fonts.googleapis.com/css2?family={fontName}&display=swap">`
+
+	SaveSettings = () =>
+	{
+		localStorage.setItem('theme', ThemeSelector.value)
+		localStorage.setItem('font', FontSelector.value)
+		localStorage.setItem('fontSize', FontSize.value)
+	}
+
+	LoadSettings = () =>
+	{
+		FontSize.value = localStorage.getItem('fontSize') ?? 18
+		FontSelector.value = localStorage.getItem('font') ?? Fonts[0]
+		ThemeSelector.value = localStorage.getItem('theme') ?? Themes[0]
+
+		document.getElementById('settingsContent').style.fontSize = FontSize.value + 'px'
+	}
+
+	UpdateFont = () => document.body.style.fontFamily = FontSelector.value
+	UpdateTheme = () => document.documentElement.className = `theme-${ThemeSelector.value.toLowerCase()}`
+
+	ModifyFontSize = (amount) => SetFontSize(Number(FontSize.value) + amount)
+
+	SetFontSize = (fontSize) => 
+	{
+		// Clamp to bounds
+		fontSize = Math.min(Math.max(fontSize, FontSizeBounds.min), FontSizeBounds.max)
+
+		document.body.style.fontSize = fontSize + 'px'
+		FontSize.value = fontSize
+	}
+
+	LoadFonts = () =>
+	{
+		// Add all fonts to selector
+		Fonts.forEach(font =>
+		{
+			document.head.innerHTML += FontHTMLRaw.replace('{fontName}', font)
+			FontSelector.innerHTML += `<option value="${font}" style="font-family: '${font}', sans-serif">${font}</option>`
+		})
+
+		FontSelector.addEventListener('change', UpdateFont)
+	}
+
+	LoadThemes = () =>
+	{
+		Themes.forEach(theme => ThemeSelector.innerHTML += `<option value="${theme}">${theme}</option>`)
+		ThemeSelector.addEventListener('change', UpdateTheme)
+	}
+
+	LoadFonts()
+	LoadThemes()
+	LoadSettings()
+	</script>
+@endsection

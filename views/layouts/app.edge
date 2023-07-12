@@ -6,10 +6,16 @@
 
 		<title>Blog Prototype</title>
 		
-		<link href="/styles/base.min.css" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		
+		<link href="/styles/themes.min.css" rel="stylesheet">
+		<link href="/styles/base.css" rel="stylesheet">
 
-		<!-- Font Awesome -->
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+		<!-- Font Awesome - Preload to load asynchronously -->
+		<link
+			rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 		@!section('styles')
 	</head>
@@ -25,8 +31,8 @@
 			</button>
 			@endif
 			
-			<button id="theme-switcher" onClick="toggleTheme()" aria-label="Theme Switcher">
-				<i class="fa-solid fa-circle-half-stroke"></i>
+			<button id="theme-switcher" onClick="location.href = '/settings'" aria-label="Settings">
+				<i class="fa-solid fa-gear"></i>
 			</button>
 		</nav>
 
@@ -37,8 +43,7 @@
 
 		<!-- Footer -->
 		<footer>
-			<p>Created with 💖</p>
-			<p>2023</p>
+			<p>© Lewis Comstive 2023</p>
 			<hr>
 
 			@if(auth)
@@ -51,18 +56,23 @@
 		</footer>
 
 		<script>
-		const DefaultTheme = 'dark'
+			// Called immediately at script initialisation/load
+			const DefaultTheme = 'Dark'
+			const DefaultFont = 'Open Sans'
 
-		setTheme = (theme) =>
-		{
-			localStorage.setItem('theme', theme);
-			document.documentElement.className = `theme-${theme}`
-		}
+			let theme = localStorage.getItem('theme')
+			if(theme === null)
+				localStorage.setItem('theme', theme = DefaultTheme)
 
-		toggleTheme = () => setTheme(localStorage.getItem('theme') === 'dark' ? 'light' : 'dark')
+			let font = localStorage.getItem('font')
+			if(font === null)
+				localStorage.setItem('font', font = DefaultFont)
 
-		// Called immediately at script initialisation/load
-		setTheme(localStorage.getItem('theme') ?? DefaultTheme)
+			document.documentElement.className = `theme-${theme.toLowerCase()}`
+			document.body.style.fontFamily = font
+
+			document.head.innerHTML += `<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
+							href="https://fonts.googleapis.com/css2?family=${encodeURIComponent(font)}&display=swap">`
 		</script>
 	</body>
 </html>

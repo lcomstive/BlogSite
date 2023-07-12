@@ -2,36 +2,9 @@
 
 :root
 {
-	--font-size: 18px;
 	--content-width: 1000px;
 	--border-radius: 2px;
 	--transition: all 0.2s ease-in-out;
-}
-
-.theme-dark
-{
-	--colour: white;
-	--bg-colour: #0c0c0d;
-	--accent-colour: #4040ff;
-	--button-colour: #858585;
-	--button-hover-colour: #ffffff;
-	--button-disabled-colour: #3f3f8d;
-	--placeholder-colour: #a3a3a3;
-	--bg-secondary-colour: #25252e;
-	--bg-secondary-colour-hover: #242424;
-}
-
-.theme-light
-{
-	--colour: black;
-	--bg-colour: #ffffff;
-	--button-colour: #b7b7b7;
-	--accent-colour: #1919ff;
-	--button-hover-colour: #2c2c2c;
-	--button-disabled-colour: #4646a8;
-	--placeholder-colour: #6b6b6b;
-	--bg-secondary-colour: #eaeaea;
-	--bg-secondary-colour-hover: #f3f3f3;
 }
 
 html, body
@@ -41,11 +14,9 @@ html, body
 	color: var(--colour);
 	background-color: var(--bg-colour);
 
-	font-family: 'Lexend', sans-serif;
 	font-size: var(--font-size);
 
 	overflow-x: hidden;
-	transition: var(--transition);
 }
 
 img
@@ -63,8 +34,6 @@ button
 	color: var(--colour);
 	border: 1px solid var(--button-colour);
 	border-radius: var(--border-radius);
-
-	transition: var(--transition);
 }
 
 button:hover { border-color: var(--button-hover-colour); }
@@ -113,8 +82,6 @@ nav
 	justify-content: center;
 
 	border-bottom: 1px solid var(--colour);
-
-	transition: var(--transition);
 }
 
 nav > a, footer > a
