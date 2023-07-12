@@ -17,7 +17,7 @@
 	--separator: 1px solid var(--colour);
 
 	/* Button */
-	--button-background: 	none;
+	--button-background: 	var(--background);
 	--button-colour: 		var(--colour);
 	--button-border: 		1px solid var(--button-colour);
 	

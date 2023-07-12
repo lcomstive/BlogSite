@@ -20,7 +20,11 @@ img
 	height: auto;
 }
 
-a { color: var(--link); }
+a
+{
+	color: var(--link);
+	transition: all var(--transition-time) ease-in-out;
+}
 a:hover { color: var(--link-hover); }
 
 hr { border: var(--separator); }
@@ -46,7 +50,7 @@ button:hover, select:hover
 	color: var(--button-hover-colour);
 	border: var(--button-hover-border);
 	background: var(--button-hover-background);
-	transition: var(--transition-time) ease-in-out;
+	transition: all var(--transition-time) ease-in-out;
 }
 
 button:disabled, select:disabled

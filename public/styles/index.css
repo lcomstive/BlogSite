@@ -58,7 +58,11 @@
 	box-shadow: none;
 }
 
-#see-more:hover { background-color: var(--bg-secondary-colour-hover); }
+#see-more:hover
+{
+	color: var(--button-hover-background);
+	background-color: var(--button-hover-colour);
+}
 
 @media screen and (max-width: 600px)
 {
