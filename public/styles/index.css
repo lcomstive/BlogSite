@@ -30,8 +30,9 @@
 
 .post-preview:hover
 {
-	background-color: var(--bg-secondary-colour-hover);
-	border-color: var(--button-hover-colour);
+	color: var(--button-hover-colour);
+	border: var(--button-hover-border);
+	background: var(--button-hover-background);
 }
 
 .post-title { margin: 0; }
@@ -39,7 +40,7 @@
 .post-description
 {
 	margin: 0;
-	color: var(--placeholder-colour);
+	color: var(--secondary-colour);
 }
 
 .publish-date

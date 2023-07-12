@@ -9,7 +9,8 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		
-		<link href="/styles/themes.min.css" rel="stylesheet">
+		<!-- <link href="/styles/themes.min.css" rel="stylesheet"> -->
+		<link href="/styles/themes.css" rel="stylesheet">
 		<link href="/styles/app.min.css" rel="stylesheet">
 
 		<!-- Font Awesome - Preload to load asynchronously -->
@@ -65,7 +66,7 @@
 			let font = localStorage.getItem('font') ?? DefaultFont
 			let fontSize = localStorage.getItem('fontSize') ?? DefaultFontSize
 
-			document.documentElement.className = `theme-${theme.toLowerCase()}`
+			document.documentElement.className = `theme-${theme.toLowerCase().replaceAll(' ', '-')}`
 			document.body.style.fontFamily = `${font}, sans-serif`
 			document.body.style.fontSize = fontSize + 'px'
 

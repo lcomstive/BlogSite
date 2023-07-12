@@ -5,10 +5,7 @@ input
 	margin-bottom: 10px;
 }
 
-input:hover, #headerMediaContainer:hover
-{
-	background-color: var(--bg-secondary-colour-hover);
-}
+#headerMediaContainer:hover { background-color: var(--input-hover-background); }
 
 textarea { margin-top: 15px; }
 
@@ -22,7 +19,7 @@ textarea { margin-top: 15px; }
 {
 	position: relative;
 	border-radius: var(--border-radius);
-	background-color: var(--bg-secondary-colour);
+	background-color: var(--background-secondary);
 	padding: 7.5px 0;
 }
 
@@ -49,7 +46,7 @@ textarea { margin-top: 15px; }
 
 #headerMediaContainer .preview p
 {
-	font-size: calc(var(--font-size) * 0.75);
+	font-size: 0.75em;
 	display: inline;
 	opacity: 0.6;
 	position: absolute;
@@ -110,44 +107,50 @@ textarea { margin-top: 15px; }
 {
 	display: block;
 	position: relative;
-	border: 1px solid var(--accent-colour);
+	border: var(--preview-border);
 	border-radius: var(--border-radius);
-	padding: 10px;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 }
 
-#contentEditorContainer > textarea { background-color: var(--bg-secondary-colour); }
+#contentEditorContainer > textarea
+{
+	padding: 10px;
+	width: calc(100% - 20px);
+	color: var(--colour);
+	background: var(--content-editor-background);
+}
 
 #contentEditorContainer > textarea, #contentEditorContainer > span
 {
-	width: 100%;
 	outline: none;
 	border: none;
 	margin: 0;
-	padding: 0;
 	display: none;
-	background: none;
+	padding: 10px;
 }
+
+#contentEditorContainer > span { background: none; }
 
 #contentEditorContainer > .active { display: block; }
 
 #previewToggle
 {
+	color: var(--preview-button-colour);
+	border: var(--preview-button-border);
+	background-color: var(--background-secondary);
+
 	width: 100%;
 	height: 30px;
 	margin-top: 25px;
-	color: var(--colour);
 	font-weight: 650;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
-	border-color: var(--bg-secondary-colour);
-	background-color: var(--bg-secondary-colour);
 }
 
 #previewToggle.active
 {
-	color: var(--button-colour);
-	border-color: var(--accent-colour);
-	background-color: var(--accent-colour);
+	border: var(--preview-button-border);
+	color: var(--preview-button-active-colour);
+	background-color: var(--preview-button-active-background);
 }

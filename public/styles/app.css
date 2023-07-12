@@ -5,10 +5,11 @@
 
 html, body
 {
+	min-height: 100vh;
 	margin: 0;
 
 	color: var(--colour);
-	background-color: var(--bg-colour);
+	background: var(--background);
 
 	overflow-x: hidden;
 }
@@ -19,44 +20,66 @@ img
 	height: auto;
 }
 
-a { color: var(--accent-colour); }
-a:hover { color: var(--button-hover-colour); }
+a { color: var(--link); }
+a:hover { color: var(--link-hover); }
 
 button, select
 {
-	background: none;
-	color: var(--colour);
-	border: 1px solid var(--button-colour);
+	color: var(--button-colour);
+	background: var(--button-background);
+	border: var(--button-border);
 	border-radius: var(--border-radius);
 }
 
 select > option
 {
 	color: var(--colour);
-	background-color: var(--bg-colour);
+	background: var(--background);
 }
 
-button:hover, select:hover { border-color: var(--button-hover-colour); }
+button:hover, select:hover
+{
+	color: var(--button-hover-colour);
+	border: var(--button-hover-border);
+	background: var(--button-hover-background);
+}
+
 button:disabled, select:disabled
 {
 	color: var(--button-disabled-colour);
-	border-color: var(--button-disabled-colour);
+	border-color: var(--button-disabled-border);
 }
 
 input, textarea
 {
 	width: calc(100% - 15px);
 	padding: 5px 7.5px;
-	color: var(--colour);
-	background: var(--bg-secondary-colour);
+	color: var(--input-colour);
+	background: var(--input-background);
 	border-radius: var(--border-radius);
-	border: 1px solid var(--bg-colour);
+	border: var(--input-border);
 	outline: none;
+}
+
+input:hover
+{
+	color: var(--input-hover-colour);
+	border: var(--input-hover-border);
+	background: var(--input-hover-background);
 }
 
 input:disabled, textarea:disabled
 {
-	color: var(--placeholder-colour);
+	color: var(--input-disabled-colour);
+	border: var(--input-disabled-border);
+	background: var(--input-disabled-background);
+}
+
+input:active, input:focus, textarea:active, textarea:focus
+{
+	color: var(--input-active-colour);
+	border: var(--input-active-border);
+	background: var(--input-active-background);
 }
 
 textarea
@@ -71,7 +94,7 @@ code
 {
 	display: inline-block;
 	padding: 5px 10px;
-	background-color: var(--bg-secondary-colour);
+	background: var(--background-secondary);
 }
 
 input:focus, textarea:focus { border-color: var(--accent-colour); }
@@ -94,19 +117,24 @@ nav
 nav > a, footer > a
 {
 	padding-top: 5px;
-	text-decoration: none;
-	color: var(--placeholder-colour);
 	border-bottom: 0px solid var(--accent-colour);
 }
 
 nav > a
 {
-	
 	height: 100%;
+	text-decoration: none;
+	color: var(--nav-colour);
+	background: var(--nav-background);
+	transition: all var(--transition-time) ease-in-out;
 }
+
 nav > a:hover
 {
-	transition: var(--transition);
+	color: 		var(--nav-hover-colour);
+	background: var(--nav-hover-background);
+
+	transition: all var(--transition-time) ease-in-out;
 	border-bottom-width: 1px;
 }
 
@@ -123,7 +151,7 @@ table td:first-child, table th:first-child { padding-right: 30px; }
 
 table td:nth-child(even)
 {
-	background-color: var(--bg-secondary-colour);
+	background: var(--background-secondary);
 }
 
 #theme-switcher
@@ -151,19 +179,29 @@ table td:nth-child(even)
 
 footer
 {
-	border-top: 1px solid var(--colour);
 	left: 0;
 	right: 0;
 	bottom: 0;
 	background: none;
 	position: relative;
-	padding: 5px calc((100vw - var(--content-width)) * 0.5);
 	padding-bottom: 30px;
+	border-top: 1px solid var(--colour);
+	padding: 5px calc((100vw - var(--content-width)) * 0.5);
 }
 
 footer > a
 {
+	text-decoration: var(--link-decoration-size) var(--link-decoration-style) var(--link-decoration-colour);
 	display: block;
+	color: 		var(--footer-colour);
+	background: var(--footer-background);
+}
+
+footer > a:hover
+{
+	color: var(--footer-hover-colour);
+	background: var(--footer-hover-background);
+	text-decoration: var(--link-hover-decoration-size) var(--link-hover-decoration-style) var(--link-hover-decoration-colour);
 }
 
 /* Post Contents */
