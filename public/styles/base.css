@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend&display=swap');
-
 :root
 {
 	--content-width: 1000px;
@@ -28,7 +26,7 @@ img
 a { color: var(--accent-colour); }
 a:hover { color: var(--button-hover-colour); }
 
-button
+button, select
 {
 	background: none;
 	color: var(--colour);
@@ -36,8 +34,14 @@ button
 	border-radius: var(--border-radius);
 }
 
-button:hover { border-color: var(--button-hover-colour); }
-button:disabled
+select > option
+{
+	color: var(--colour);
+	background-color: var(--bg-colour);
+}
+
+button:hover, select:hover { border-color: var(--button-hover-colour); }
+button:disabled, select:disabled
 {
 	color: var(--button-disabled-colour);
 	border-color: var(--button-disabled-colour);
@@ -145,6 +149,12 @@ footer > a
 	{
 		width: calc(100% - 60px);
 		margin: 0 30px;
+	}
+
+	footer
+	{
+		width: calc(100% - 60px);
+		padding: 0 30px;
 	}
 }
 

@@ -2,12 +2,12 @@
 
 @section('styles')
 <link href="/styles/users.min.css" rel="stylesheet">
+<link href="/styles/settings.min.css" rel="stylesheet">
 @endsection
 
 @section('content')
-	<section id="settingsContent">
-		<h3>Profile</h3>
-		
+	<section id="settingsContent">	
+		<h3>Settings</h3>
 		<section>
 			<label for="theme">Theme</label>
 			<select name="theme" id="themes"></select>
@@ -18,15 +18,15 @@
 			<select name="font" id="fonts"></select>
 		</section>
 
-		<section>
+		<section class="numberChanger">
 			<label>Font Size</label>
 			<button onclick="ModifyFontSize(-1)">-</button>
 			<input type="number" onchange="SetFontSize(this.value)" id="fontSize">
 			<button onclick="ModifyFontSize( 1)">+</button>
 		</section>
 
-		<button onclick="SaveSettings()">Save Settings</button>
-	<section>
+		<button onclick="SaveSettings()" id="saveSettings">Save Settings</button>
+	</section>
 	<script>
 	const GoogleFontURL = 'https://fonts.googleapis.com/css2?family={fontName}&display=swap' 
 	const Themes = [ 'Light', 'Dark' ]
@@ -52,6 +52,8 @@
 		localStorage.setItem('theme', ThemeSelector.value)
 		localStorage.setItem('font', FontSelector.value)
 		localStorage.setItem('fontSize', FontSize.value)
+
+		document.getElementById('settingsContent').style.fontSize = FontSize.value + 'px'
 	}
 
 	LoadSettings = () =>
