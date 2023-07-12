@@ -1,35 +1,26 @@
-.theme-dark
-{
-	--draft-prompt-colour: #ff7474;
-}
-
-.theme-light
-{
-	--draft-prompt-colour: #ff2020;
-}
-
 article
 {
 	margin: 0;
+	font-size: inherit;
 	position: relative;
 }
 
-h1
-{
-	margin: 0;
-	font-size: calc(var(--font-size) * 2);
-}
+h1 { margin: 0; font-size: 1.5em; }
+h2 { font-size: 1.3em; }
 
 .description, .publish-date
 {
+	font-size: 0.9em;
 	margin: 10px 0;
 	font-weight: 600;
-	font-size: var(--font-size);
 	color: var(--placeholder-colour);
 }
 
+#content { font-size: inherit; }
+
 #post-content
 {
+	font-size: inherit;
 	padding-top: 30px;
 }
 

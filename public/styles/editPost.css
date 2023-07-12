@@ -10,10 +10,7 @@ input:hover, #headerMediaContainer:hover
 	background-color: var(--bg-secondary-colour-hover);
 }
 
-textarea
-{
-	margin-top: 15px;
-}
+textarea { margin-top: 15px; }
 
 #submitForm
 {

@@ -2,6 +2,7 @@
 
 @section('styles')
 <link href="/styles/post.min.css" rel="stylesheet">
+<script src="/js/formatPost.js"></script>
 
 <!-- Marked - Markdown parser -->
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -24,7 +25,8 @@
 	@endif
 	<h1>{{ post.title }}</h1>
 	<p class="description">{{ post.description }}</h3>
-	<section id="post-content"></section>
+	<hr>
+	<section id="post-content" class="post-content"></section>
 </article>
 
 <script>
@@ -33,7 +35,7 @@
 		headerIds: false
 	})
 
-	let content = `{{{ post.content }}}`.replaceAll('<br>', '\n')
-	document.getElementById('post-content').innerHTML = marked.parse(content)
+	let contents = "{{{ post.content.replaceAll('"', '\\"') }}}"
+	document.getElementById('post-content').innerHTML = FormatPost(contents)
 </script>
 @endsection

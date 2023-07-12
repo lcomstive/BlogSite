@@ -16,8 +16,7 @@ OnContentChanged = () =>
 
 	document.documentElement.scrollTop = scrollPos
 
-	// Convert content markdown to HTML and insert to content preview panel
-	contentPreviewer.innerHTML = marked.parse(contentEditor.value)
+	contentPreviewer.innerHTML = FormatPost(contentEditor.value)
 }
 
 GetFileSize = (bytes) =>
@@ -71,6 +70,7 @@ UpdateHeaderPreview = (clear = false) =>
 
 ValidateForm = () =>
 {
+	
 	if(document.getElementsByName('title')[0].value == '' ||
 		document.getElementsByName('description')[0].value == '' ||
 		document.getElementsByName('content')[0].value == '')

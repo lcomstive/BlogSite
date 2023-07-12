@@ -67,6 +67,13 @@ textarea
 	min-height: 150px;
 }
 
+code
+{
+	display: inline-block;
+	padding: 5px 10px;
+	background-color: var(--bg-secondary-colour);
+}
+
 input:focus, textarea:focus { border-color: var(--accent-colour); }
 input::placeholder, textarea::placeholder { color: var(--placeholder-colour); }
 
@@ -141,6 +148,18 @@ footer
 footer > a
 {
 	display: block;
+}
+
+/* Post Contents */
+.post-content h2 { font-size: 1.3em; }
+
+blockquote, q
+{
+	display: block;
+	text-decoration: dotted;
+
+	border-left: 1px solid var(--colour);
+	padding-left: 20px;
 }
 
 @media screen and (max-width: 650px)
