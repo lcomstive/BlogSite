@@ -1,18 +1,17 @@
 .theme-dark
 {
-	--description-colour: #b1b0b0;
 	--draft-prompt-colour: #ff7474;
 }
 
 .theme-light
 {
-	--description-colour: #b1b0b0;
 	--draft-prompt-colour: #ff2020;
 }
 
 article
 {
 	margin: 0;
+	position: relative;
 }
 
 h1
@@ -26,7 +25,7 @@ h1
 	margin: 10px 0;
 	font-weight: 600;
 	font-size: var(--font-size);
-	color: var(--description-colour);
+	color: var(--placeholder-colour);
 }
 
 #post-content
@@ -44,4 +43,14 @@ h1
 .draft-prompt
 {
 	color: var(--draft-prompt-colour);
+}
+
+#edit
+{
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 30px;
+	height: 30px;
 }

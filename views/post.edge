@@ -1,7 +1,7 @@
 @layout('layouts/app.edge')
 
 @section('styles')
-<link href="/styles/post.css" rel="stylesheet">
+<link href="/styles/post.min.css" rel="stylesheet">
 
 <!-- Marked - Markdown parser -->
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -15,7 +15,7 @@
 <article>
 	<p class="publish-date">{{ post.createdAt.toDateString() }}</p>
 	@if(auth)
-	<button onClick="location.href='/post/edit/{{ post.url }}'">Edit</button>
+	<button onClick="location.href='/post/edit/{{ post.url }}'" id="edit"><i class="fa-solid fa-pen-to-square"></i></button>
 	@endif
 	@if(post.headerMedia && post.headerMediaType == 'video')
 		<video src="{{ post.headerMedia }}" id="headerMedia" controls></video>
@@ -28,6 +28,12 @@
 </article>
 
 <script>
-	document.getElementById('post-content').innerHTML = marked.parse(`{{{ post.content }}}`)
+	marked.use({
+		mangle: false,
+		headerIds: false
+	})
+
+	let content = `{{{ post.content }}}`.replaceAll('<br>', '\n')
+	document.getElementById('post-content').innerHTML = marked.parse(content)
 </script>
 @endsection

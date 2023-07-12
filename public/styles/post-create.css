@@ -58,10 +58,11 @@ textarea
 	position: absolute;
 	right: 0;
 	top: 10px;
-	left: 20%;
-	right: 0;
+	left: 105px;
+	right: 10px;
 	margin: 0;
 	text-align: left;
+	word-wrap: break-word;
 }
 
 #headerMediaContainer .preview img, #headerMediaContainer .preview video
@@ -81,8 +82,10 @@ textarea
 #headerMediaContainer .preview button
 {
 	position: absolute;
-	bottom: 5px;
-	right: 5%;
+	top: 35px;
+	right: 5px;
+	height: 30px;
+	width: 30px;
 }
 
 #content > h1 { position: relative; }
@@ -134,14 +137,20 @@ textarea
 
 #previewToggle
 {
-	margin-top: 25px;
 	width: 100%;
+	height: 30px;
+	margin-top: 25px;
+	color: var(--colour);
+	font-weight: 650;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
+	border-color: var(--bg-secondary-colour);
 	background-color: var(--bg-secondary-colour);
 }
 
 #previewToggle.active
 {
+	color: var(--button-colour);
+	border-color: var(--accent-colour);
 	background-color: var(--accent-colour);
 }

@@ -1,37 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend');
+@import url('https://fonts.googleapis.com/css2?family=Lexend&display=swap');
 
 :root
 {
 	--font-size: 18px;
 	--content-width: 1000px;
-	--border-radius: 5px;
-	--transition: all 0.15s ease-in-out;
+	--border-radius: 2px;
+	--transition: all 0.2s ease-in-out;
 }
 
 .theme-dark
 {
 	--colour: white;
-	--bg-colour: #131317;
+	--bg-colour: #0c0c0d;
 	--accent-colour: #4040ff;
-	--button-colour: var(--colour);
-	--button-hover-colour: #6767ff;
+	--button-colour: #858585;
+	--button-hover-colour: #ffffff;
 	--button-disabled-colour: #3f3f8d;
 	--placeholder-colour: #a3a3a3;
-	--bg-secondary-colour: #212142;
-	--bg-secondary-colour-hover: #303062;
+	--bg-secondary-colour: #25252e;
+	--bg-secondary-colour-hover: #242424;
 }
 
 .theme-light
 {
 	--colour: black;
 	--bg-colour: #ffffff;
-	--button-colour: white;
+	--button-colour: #b7b7b7;
 	--accent-colour: #1919ff;
-	--button-hover-colour: #6767ff;
+	--button-hover-colour: #2c2c2c;
 	--button-disabled-colour: #4646a8;
-	--placeholder-colour: #818181;
+	--placeholder-colour: #6b6b6b;
 	--bg-secondary-colour: #eaeaea;
-	--bg-secondary-colour-hover: #eaeaea;
+	--bg-secondary-colour-hover: #f3f3f3;
 }
 
 html, body
@@ -59,19 +59,19 @@ a:hover { color: var(--button-hover-colour); }
 
 button
 {
-	color: var(--button-colour);
-	background-color: var(--accent-colour);
-	border: 1px solid var(--accent-colour);
+	background: none;
+	color: var(--colour);
+	border: 1px solid var(--button-colour);
 	border-radius: var(--border-radius);
 
 	transition: var(--transition);
 }
 
-button:hover { background-color: var(--button-hover-colour); }
+button:hover { border-color: var(--button-hover-colour); }
 button:disabled
 {
+	color: var(--button-disabled-colour);
 	border-color: var(--button-disabled-colour);
-	background-color: var(--button-disabled-colour);
 }
 
 input, textarea
@@ -105,19 +105,31 @@ nav
 {
 	height: 35px;
 	padding: 5px 10px;
-	background-color: var(--bg-secondary-colour);
+	background: none;
 
+	gap: 20px;
 	display: flex;
 	position: relative;
-	gap: 20px;
 	justify-content: center;
+
+	border-bottom: 1px solid var(--colour);
+
+	transition: var(--transition);
 }
 
 nav > a, footer > a
 {
 	padding-top: 5px;
-	color: var(--colour);
-	border-radius: var(--border-radius);
+	text-decoration: none;
+	color: var(--placeholder-colour);
+	border-bottom: 0px solid var(--accent-colour);
+}
+
+nav > a { height: 100%; }
+nav > a:hover
+{
+	transition: var(--transition);
+	border-bottom-width: 1px;
 }
 
 #theme-switcher
@@ -145,12 +157,14 @@ nav > a, footer > a
 
 footer
 {
+	border-top: 1px solid var(--colour);
 	left: 0;
+	right: 0;
 	bottom: 0;
-	width: calc(100vw - 40px);
-	padding: 5px 20px;
+	background: none;
+	position: relative;
+	padding: 5px calc((100vw - var(--content-width)) * 0.5);
 	padding-bottom: 30px;
-	background-color: var(--bg-secondary-colour);
 }
 
 footer > a

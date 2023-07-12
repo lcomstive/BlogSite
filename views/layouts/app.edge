@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="theme-dark">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 		<title>Blog Prototype</title>
-
-		<script src="/js/themes.js"></script>
-		<link href="/styles/base.css" rel="stylesheet">
+		
+		<link href="/styles/base.min.css" rel="stylesheet">
 
 		<!-- Font Awesome -->
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -20,13 +19,15 @@
 			<a href="/">Home</a>
 			<a href="#">About</a>
 
-			<button id="theme-switcher" onClick="toggleTheme()"><i class="fa-solid fa-circle-half-stroke"></i></button>
-
 			@if(auth)
 			<button onClick="location.href='/logout'" id="logout">
 				<i class="fa-solid fa-arrow-right-from-bracket"></i>
 			</button>
 			@endif
+			
+			<button id="theme-switcher" onClick="toggleTheme()" aria-label="Theme Switcher">
+				<i class="fa-solid fa-circle-half-stroke"></i>
+			</button>
 		</nav>
 
 		<!-- Content -->
@@ -48,5 +49,20 @@
 			<a href="/login">Login</a>
 			@endif
 		</footer>
+
+		<script>
+		const DefaultTheme = 'dark'
+
+		setTheme = (theme) =>
+		{
+			localStorage.setItem('theme', theme);
+			document.documentElement.className = `theme-${theme}`
+		}
+
+		toggleTheme = () => setTheme(localStorage.getItem('theme') === 'dark' ? 'light' : 'dark')
+
+		// Called immediately at script initialisation/load
+		setTheme(localStorage.getItem('theme') ?? DefaultTheme)
+		</script>
 	</body>
 </html>

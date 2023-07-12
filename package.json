@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node .",
-    "watch": "nodemon ."
+    "watch": "nodemon .",
+    "minify": "cleancss --batch --batch-suffix '.min' -O2 public/styles/*.css !public/styles/*.min.css",
+    "watch:minify": "cleancss --watch --batch --batch-suffix '.min' -O2 public/styles/*.css !public/styles/*.min.css"
   },
   "author": "",
   "license": "ISC",
@@ -17,7 +19,11 @@
     "express-edge": "^3.0.0",
     "express-fileupload": "^1.4.0",
     "express-session": "^1.17.3",
-    "mongoose": "^7.3.2",
+    "mongoose": "^7.3.2"
+  },
+  "devDependencies": {
+    "clean-css": "^5.3.2",
+    "clean-css-cli": "^5.6.2",
     "nodemon": "^3.0.1"
   }
 }

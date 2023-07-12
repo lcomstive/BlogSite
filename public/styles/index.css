@@ -1,25 +1,9 @@
 :root
 {
-	--post-gap: 10px;
-	--post-padding: 20px;
+	--post-gap: 15px;
+	--post-padding: 15px;
 	--post-bg-shadow-blur: 5px;
 	--post-bg-shadow-offset: 5px;
-}
-
-.theme-dark
-{
-	--post-bg-colour: #ffffff15;
-	--post-bg-colour-hover: #ffffff28;
-	--post-bg-shadow-colour: #c2c2c211;
-	--post-description-colour: #b1b0b0;
-}
-
-.theme-light
-{
-	--post-bg-colour: #00000014;
-	--post-bg-colour-hover: #0000000b;
-	--post-bg-shadow-colour: #00000015;
-	--post-description-colour: #3d3d3d;
 }
 
 .posts-list
@@ -32,34 +16,31 @@
 
 .post-preview, #see-more
 {
+	color: var(--colour);
 	position: relative;
-	width: calc(33% - (var(--post-gap) * 0.5) - (var(--post-padding) * 2));
 	min-height: 100px;
+	width: calc(33% - (var(--post-gap) * 0.5) - (var(--post-padding) * 2) - 2px);
 
-	border-radius: var(--border-radius);
-	background-color: var(--post-bg-colour);
-	padding: var(--post-padding);
 	text-decoration: none;
+	padding: var(--post-padding);
+	border-radius: var(--border-radius);
+	border: 1px solid var(--button-colour);
 
 	transition: var(--transition);
-	color: var(--colour);
-	box-shadow: 0 var(--post-bg-shadow-offset) var(--post-bg-shadow-blur) var(--post-bg-shadow-colour);
 }
 
 .post-preview:hover
 {
-	background-color: var(--post-bg-colour-hover);
+	background-color: var(--bg-secondary-colour-hover);
+	border-color: var(--button-hover-colour);
 }
 
-.post-title
-{
-	margin: 0;
-}
+.post-title { margin: 0; }
 
 .post-description
 {
 	margin: 0;
-	color: var(--post-description-colour);
+	color: var(--placeholder-colour);
 }
 
 .publish-date
@@ -72,11 +53,12 @@
 
 #see-more
 {
+	border: none;
 	background: none;
 	box-shadow: none;
 }
 
-#see-more:hover { background: var(--post-bg-shadow-colour); }
+#see-more:hover { background-color: var(--bg-secondary-colour-hover); }
 
 @media screen and (max-width: 600px)
 {
@@ -88,5 +70,5 @@
 
 @media screen and (min-width: 601px) and (max-width: 1000px)
 {
-	.post-preview, #see-more { width: calc(50% - (var(--post-gap) * 0.5) - (var(--post-padding) * 2)); }
+	.post-preview, #see-more { width: calc(50% - (var(--post-gap) * 0.5) - (var(--post-padding) * 2) - 2px); }
 }

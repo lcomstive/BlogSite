@@ -60,7 +60,7 @@ UpdateHeaderPreview = (clear = false) =>
 	headerMediaPreview.appendChild(description)
 
 	const removeButton = document.createElement('button')
-	removeButton.innerHTML = 'Clear'
+	removeButton.innerHTML = '<i class="fa-regular fa-circle-xmark"></i>'
 	removeButton.onclick = (event) =>
 	{
 		event.preventDefault()
@@ -102,7 +102,8 @@ SetHeaderMediaToFilepath = (filepath) =>
 	headerMediaPreview.appendChild(description)
 
 	const removeButton = document.createElement('button')
-	removeButton.innerHTML = 'Clear'
+	removeButton.id = 'buttonRemove'
+	removeButton.innerHTML = '<i class="fa-regular fa-circle-xmark"></i>'
 	removeButton.onclick = (event) =>
 	{
 		event.preventDefault()
