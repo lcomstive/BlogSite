@@ -2,7 +2,8 @@
 {
 	/* Fallbacks for theme colours */
 	--colour: black;
-	--secondary-colour: #b6b6b6;
+	--colour-secondary: #b6b6b6;
+	--subtext-colour: var(--colour-secondary);
 	
 	--background: #ffffff;
 	--background-secondary: #eaeaea;
@@ -11,6 +12,9 @@
 	--placeholder-colour: #6b6b6b;
 
 	--transition-time: 0.15s;
+
+	/* Horizontal line (hr) */
+	--separator: 1px solid var(--colour);
 
 	/* Button */
 	--button-background: 	none;
@@ -54,22 +58,50 @@
 	--input-disabled-border: 	 var(--input-border);
 	--input-disabled-background: var(--input-background);
 
+	/* Code */
+	--code-colour: var(--colour);
+	--code-background: var(--background-secondary);
+
+	/* Table */
+	--table-colour: var(--colour);
+	--table-background: none;
+
+	--table-odd-colour: var(--colour);
+	--table-odd-background: var(--background-secondary);
+
 	/* Navbar */
 	--nav-background: 		none;
 	--nav-colour: 			var(--colour);
-
-	--nav-hover-colour:  	var(--link-hover);
-	--nav-hover-background: var(--nav-background);
+	--nav-separator: 		var(--separator);
+	
+	--nav-link-border:			 1px solid var(--colour);
+	--nav-link-border-width:	 1px;
+	--nav-link-background: 		 none;
+	--nav-link-hover-colour:  	 var(--link-hover);
+	--nav-link-hover-background: var(--nav-background);
 
 	/* Footer */
-	--footer-background: 	   none;
-	--footer-colour: 		   var(--link);
+	--footer-background: 	none;
+	--footer-colour: 		var(--link);
+	--footer-separator: 	var(--separator);
 
-	--footer-hover-colour:     var(--link-hover);
-	--footer-hover-background: var(--nav-background);
+	--footer-link-background: 	none;
+	--footer-link-colour: 		var(--link);
+
+	--footer-link-hover-colour:     var(--link-hover);
+	--footer-link-hover-background: var(--nav-background);
+
+	--footer-link-decoration-size: var(--link-decoration-size);
+	--footer-link-decoration-style: var(--link-decoration-style);
+	--footer-link-decoration-colour: var(--link-decoration-colour);
+
+	--footer-link-hover-decoration-size:   var(--link-hover-decoration-size);
+	--footer-link-hover-decoration-style:  var(--link-hover-decoration-style);
+	--footer-link-hover-decoration-colour: var(--link-hover-decoration-colour);
 
 	/* Content Editor */
 	--preview-border: 1px solid var(--colour);
+	--content-editor-colour: var(--colour);
 	--content-editor-background: var(--background-secondary);
 	--draft-prompt-colour: #ff2020;
 	--preview-button-border: 1px solid var(--colour);
@@ -79,14 +111,20 @@
 	
 	--preview-button-active-colour: var(--colour);
 	--preview-button-active-background: var(--accent-colour);
+
+	/* Code */
+	--code-colour: 		var(--colour);
+	--code-background: 	var(--background-secondary);	
 }
 
 .theme-light
 {
-	--accent-colour: #ff1b1b;
+	--accent-colour: #4c4c4c;
+	--colour-secondary: #373737;
+	--subtext-colour: #585858;
 	
 	--link: var(--accent-colour);
-	--link-hover: #ff5959;
+	--link-hover: #8a8a8a;
 	--link-decoration-colour: var(--link);
 	--link-hover-decoration-colour: var(--link-hover);
 
@@ -96,11 +134,15 @@
 	--input-disabled-colour: #686868;
 	--button-hover-colour: #6f6f6f;
 	--button-hover-border: 1px solid #bfbfbf;
+
+	--preview-button-active-colour: white;
 }
 
 .theme-dark
 {
-	--accent-colour: #4a4aca;
+	--accent-colour: #6d6dff;
+
+	--separator: 1px solid #2f2f2f;
 	
 	--link: var(--accent-colour);
 	--link-hover: #7d7dff;
@@ -113,6 +155,10 @@
 
 	--input-disabled-colour: 1px solid #6f6f6f;
 	--button-hover-border: 1px solid #b0b0b0;
+
+	--nav-link-border: 1px solid var(--link-hover);
+
+	--footer-colour: var(--colour);
 }
 
 .theme-matrix
@@ -124,9 +170,57 @@
 	--placeholder-colour: #2eb900;
 	--background-secondary: #143409;
 	--draft-prompt-colour: #e73939;
+	--code-colour: #87ff5f;
+
+	--preview-button-active-colour: var(--background);
+	--preview-button-active-background: var(--colour);
 }
 
-.theme-other
+.theme-frog
+{
+	--accent-colour: #8dffce;
+	--colour-secondary: white;
+	--subtext-colour: #015249;
+	
+	--background: #8dffce;
+	--background-secondary: #015249;
+
+	--table-odd-colour: rgb(230, 230, 230);
+
+	--separator: 1px solid #20b8a6;
+
+	--input-colour: var(--colour-secondary);
+
+	--button-background: var(--accent-colour);
+	--button-hover-colour: var(--background);
+	--button-hover-background: var(--background-secondary);
+
+	--link-hover: var(--subtext-colour);
+	--code-colour: #cdfff9;
+
+	--nav-colour: var(--colour-secondary);
+	--nav-background: var(--background-secondary);
+
+	--nav-link-border-width: 3px;
+	--nav-link-hover-colour: var(--accent-colour);
+	--nav-link-border: 5px solid var(--nav-background);
+
+	--footer-colour: var(--colour-secondary);
+	--footer-background: var(--background-secondary);
+	--footer-link-decoration-colour: var(--accent-colour);
+	
+	--footer-link-hover-colour: var(--colour-secondary);
+	--footer-link-hover-decoration-colour: var(--footer-link-hover-colour);
+
+	--footer-link-colour: var(--accent-colour);
+
+	--preview-button-active-colour: var(--colour-secondary);
+	--preview-button-active-background: var(--subtext-colour);
+
+	--content-editor-colour: var(--colour-secondary);
+}
+
+.theme-void
 {
 	--colour: white;
 	--accent-colour: #a239ca;
@@ -141,6 +235,8 @@
 
 	--button-hover-colour: #a9a9a9;
 	--button-hover-border: 1px solid var(--button-hover-colour);
+
+	--table-odd-background: var(--accent-colour);
 
 	/* Content Editor */
 	--content-editor-background: var(--input-background);

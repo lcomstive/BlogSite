@@ -13,7 +13,7 @@ h2 { font-size: 1.3em; }
 	font-size: 0.9em;
 	margin: 10px 0;
 	font-weight: 600;
-	color: var(--placeholder-colour);
+	color: var(--subtext-colour);
 }
 
 #content { font-size: inherit; }

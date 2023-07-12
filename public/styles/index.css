@@ -48,7 +48,7 @@
 	position: absolute;
 	bottom: 5px;
 	margin: 0;
-	color: var(--post-description-colour)
+	color: var(--subtext-colour);
 }
 
 #see-more

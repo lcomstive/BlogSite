@@ -1,3 +1,8 @@
+body
+{
+	transition: all var(--transition-time) ease-in-out;
+}
+
 #settingsContent > section
 {
 	width: 15em;
