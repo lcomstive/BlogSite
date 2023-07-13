@@ -58,11 +58,41 @@
 
 		<script>
 			// Called immediately at script initialisation/load
-			const DefaultTheme = 'Dark'
 			const DefaultFont = 'Open Sans'
 			const DefaultFontSize = 18
 
-			let theme = localStorage.getItem('theme') ?? DefaultTheme
+			let theme = localStorage.getItem('theme')
+			if(theme == null)
+			{
+				// Check if device has accessible preference for theme (light vs. dark mode)
+				if(window.matchMedia)
+				{
+					// Set to light or dark mode if device has preference
+					if (window.matchMedia('(prefers-color-scheme: dark)').matches)
+						theme = 'Dark'
+					else
+						theme = 'Light'
+				}
+				else // Device does not have any accessible preferences related to light/dark mode
+					theme = 'Dark'
+
+				localStorage.setItem('theme', theme)
+			}
+
+			// Listen for device theme preference changes
+			if(window.matchMedia)
+				window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event =>
+				{
+					let theme = localStorage.getItem('theme') ?? 'Light'
+					if(theme == 'Light' && event.matches)
+						theme = 'Dark'
+					else if(theme == 'Dark' && !event.matches)
+						theme = 'Light'
+					
+					localStorage.setItem('theme', theme)
+					document.documentElement.className = `theme-${theme.toLowerCase().replaceAll(' ', '-')}`
+				})
+
 			let font = localStorage.getItem('font') ?? DefaultFont
 			let fontSize = localStorage.getItem('fontSize') ?? DefaultFontSize
 

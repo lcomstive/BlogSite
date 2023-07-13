@@ -59,6 +59,7 @@ app.get('/post/edit/:title', auth, editPost.get)
 app.post('/post/update/:title', auth, editPost.post)
 
 const userLogin = require('./controllers/userLogin')
+userLogin.init()
 app.get('/login', userLogin.get)
 app.post('/login', userLogin.post)
 
