@@ -57,6 +57,7 @@ button:disabled, select:disabled
 {
 	color: var(--button-disabled-colour);
 	border-color: var(--button-disabled-border);
+	background: var(--button-disabled-background);
 	transition: var(--transition-time) ease-in-out;
 }
 
@@ -69,6 +70,8 @@ input, textarea
 	border-radius: var(--border-radius);
 	border: var(--input-border);
 	outline: none;
+
+	transition: all var(--transition-time) ease-in-out;
 }
 
 input:hover
@@ -76,6 +79,8 @@ input:hover
 	color: var(--input-hover-colour);
 	border: var(--input-hover-border);
 	background: var(--input-hover-background);
+
+	transition: all var(--transition-time) ease-in-out;
 }
 
 input:disabled, textarea:disabled
@@ -83,6 +88,8 @@ input:disabled, textarea:disabled
 	color: var(--input-disabled-colour);
 	border: var(--input-disabled-border);
 	background: var(--input-disabled-background);
+
+	transition: all var(--transition-time) ease-in-out;
 }
 
 input:active, input:focus, textarea:active, textarea:focus
@@ -90,6 +97,8 @@ input:active, input:focus, textarea:active, textarea:focus
 	color: var(--input-active-colour);
 	border: var(--input-active-border);
 	background: var(--input-active-background);
+
+	transition: all var(--transition-time) ease-in-out;
 }
 
 textarea
@@ -133,6 +142,7 @@ nav > a, footer > a
 nav > a
 {
 	height: 100%;
+	font-weight: 500;
 	text-decoration: none;
 	color: var(--nav-colour);
 	background: var(--nav-link-background);
@@ -249,7 +259,7 @@ blockquote, q
 	}
 }
 
-@media screen and (min-width: 651px) and (max-width: 1000px)
+@media screen and (min-width: 651px) and (max-width: 1100px)
 {
 	:root { --content-width: 600px; }
 }
