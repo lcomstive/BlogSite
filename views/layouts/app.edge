@@ -9,9 +9,13 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		
-		<!-- <link href="/styles/themes.min.css" rel="stylesheet"> -->
-		<link href="/styles/themes.css" rel="stylesheet">
-		<link href="/styles/app.min.css" rel="stylesheet">
+		@if(production)
+			<link href="/styles/themes.min.css" rel="stylesheet">
+			<link href="/styles/app.min.css" rel="stylesheet">
+		@else
+			<link href="/styles/themes.css" rel="stylesheet">
+			<link href="/styles/app.css" rel="stylesheet">
+		@endif
 
 		<!-- Font Awesome - Preload to load asynchronously -->
 		<link
@@ -33,6 +37,13 @@
 				<i class="fa-solid fa-arrow-right-from-bracket"></i>
 			</button>
 			@endif
+
+			<span id="search">
+				<input value="{{ searchQuery ?? '' }}" placeholder="Search..." >
+				<button onClick="BeginSearch()" aria-label="Search Function">
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</button>
+			</span>
 			
 			<button id="theme-switcher" onClick="location.href = '/settings'" aria-label="Settings">
 				<i class="fa-solid fa-gear"></i>

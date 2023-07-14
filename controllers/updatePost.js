@@ -10,7 +10,7 @@ module.exports =
 	get: async (req, res) =>
 	{
 		const post = await Post.findOne({ url: encodeURIComponent(req.params.title) })
-		res.render('editPost', { post, auth: req.session.renderer })
+		res.render('editPost', { post, auth: req.session.renderer, production: process.env.PRODUCTION ?? false })
 	},
 
 	post: async (req, res) =>

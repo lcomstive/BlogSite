@@ -5,6 +5,7 @@
 - Create and fill out a `.env` file in the root source directory. See [available variables](#Environment-Variables)
 
 ### Environment Variables
+- `PRODUCTION` - Boolean value for production environment, defaults to `false`
 - `PORT` - The port to listen on, defaults to `3000`. Uses HTTPS if `SSL_KEY` and - `SSL_CERT` are present and valid filepaths
 - `SSL_KEY`, `SSL_CERT` - SSL key and certificate
 - `MONGO_PORT`, `MONGO_IP`, `MONGO_DBNAME` - The address, port and collection name of your Mongo database

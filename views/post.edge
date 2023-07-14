@@ -1,7 +1,11 @@
 @layout('layouts/app.edge')
 
 @section('styles')
-<link href="/styles/post.css" rel="stylesheet">
+@if(production)
+	<link href="/styles/post.min.css" rel="stylesheet">
+@else
+	<link href="/styles/post.css" rel="stylesheet">
+@endif
 <script src="/js/formatPost.js"></script>
 
 <!-- Marked - Markdown parser -->

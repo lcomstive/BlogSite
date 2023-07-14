@@ -71,7 +71,8 @@ app.post('/users', auth, userController.addNew)
 
 app.get('/logout', auth, require('./controllers/userLogout'))
 
-app.get('/settings', (req, res) => res.render('settings', { auth: req.session.renderer }))
+app.get('/search/:query', require('./controllers/search'))
+app.get('/settings', (req, res) => res.render('settings', { auth: req.session.renderer, production: process.env.PRODUCTION ?? false }))
 
 // Start listening
 let port = process.env.PORT || 3000
