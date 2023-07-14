@@ -40,7 +40,7 @@
 
 			<span id="search">
 				<input value="{{ searchQuery ?? '' }}" placeholder="Search..." >
-				<button onClick="BeginSearch()" aria-label="Search Function">
+				<button aria-label="Search Function">
 					<i class="fa-solid fa-magnifying-glass"></i>
 				</button>
 			</span>
@@ -69,6 +69,7 @@
 			@endif
 		</footer>
 
+		<!-- Settings load and apply -->
 		<script>
 			// Called immediately at script initialisation/load
 			const DefaultFont = 'Open Sans'
@@ -115,6 +116,56 @@
 
 			document.head.innerHTML += `<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
 							href="https://fonts.googleapis.com/css2?family=${encodeURIComponent(font)}&display=swap">`
+		</script>
+
+		<!-- Search function -->
+		<script>
+			const searchInput = document.getElementById('search').getElementsByTagName('input')[0]
+			const searchButton = document.getElementById('search').getElementsByTagName('button')[0]
+
+			// When a key is pressed in the search input, resets this using setInterval.
+			// If fired, redirects to /search/:query
+			let searchInterval = null
+			const SearchInputDelay = 750 // milliseconds
+
+			ToggleSearchBar = () =>
+			{
+				searchInput.classList.toggle('active')
+				let active = searchInput.classList.contains('active')
+				
+				searchButton.innerHTML = `<i class="fa-solid fa-${active ? 'circle-xmark' : 'magnifying-glass'}"></i>`
+
+				if(!active && searchInterval != null)
+				{
+					clearInterval(searchInterval)
+					searchInterval = null
+				}
+
+				if(!active)
+					searchInput.value = ''
+			}
+
+			DoSearch = () =>
+			{
+				if(searchInput.value.length <= 3)
+					return // Search query not long enough
+				
+				location.href = `/search/${searchInput.value}`
+			}
+
+			ResetSearchInterval = () =>
+			{
+				if(searchInput)
+					clearInterval(searchInterval)
+				searchButton = setInterval(DoSearch, SearchInputDelay)
+			}
+
+			searchButton.addEventListener('click', ToggleSearchBar)
+			searchInput.addEventListener('keyup', ResetSearchInterval)
+
+			// If page loaded from a search query, open up the seach bar
+			if(searchInput.value != '')
+				ToggleSearchBar()
 		</script>
 	</body>
 </html>
