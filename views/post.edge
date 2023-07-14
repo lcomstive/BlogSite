@@ -1,7 +1,7 @@
 @layout('layouts/app.edge')
 
 @section('styles')
-<link href="/styles/post.min.css" rel="stylesheet">
+<link href="/styles/post.css" rel="stylesheet">
 <script src="/js/formatPost.js"></script>
 
 <!-- Marked - Markdown parser -->
@@ -25,6 +25,14 @@
 	@endif
 	<h1>{{ post.title }}</h1>
 	<p class="description">{{ post.description }}</h3>
+
+	@if(post.tags)
+	<span id="tags">
+		@each(tag in post.tags)
+			<a href="/tag/{{ tag }}">{{ tag }}</a>
+		@endeach
+	</span>
+	@endif
 	<hr>
 	<section id="post-content" class="post-content"></section>
 </article>

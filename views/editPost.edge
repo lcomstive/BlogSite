@@ -3,7 +3,7 @@
 @section('styles')
 <script src="/js/formatPost.js"></script>
 <script src="/js/editPost.js"></script>
-<link href="/styles/editPost.min.css" rel="stylesheet">
+<link href="/styles/editPost.css" rel="stylesheet">
 
 <!-- Marked - Markdown parser -->
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -33,7 +33,11 @@
 			<textarea name="content" placeholder="Content" id="contentEditor" class="active">{{{ post?.content ?? "" }}}</textarea>
 			<span id="contentPreview" class="post-content"></span>
 		</span>
-
+		<br>
+		<section id="tagsContainer">
+			<label for="tags">Tags</label>
+			<input name="tags" id="tags" placeholder="Post tags separated by a comma or semicolon" value="{{ post?.tags?.join(', ') ?? '' }}">
+		</section>
 		<br>
 		<section id="postIsActive">
 			<label for="isActive">Active</label>

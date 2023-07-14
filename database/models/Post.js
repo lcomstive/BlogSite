@@ -7,6 +7,7 @@ const PostSchema = new mongoose.Schema({
 	url: String,
 	headerMedia: String,
 	headerMediaType: String,
+	tags: [String],
 	isActive:
 	{
 		type: Boolean,

@@ -45,6 +45,9 @@ module.exports =
 				req.body.headerMediaType = 'video'
 		}
 
+		// Split by comma and semicolon, including any whitespace before and after the separator
+		req.body.tags = req.body.tags?.split(/\s*,\s*|\s*;\s*/gm) ?? []
+
 		Post.findOneAndUpdate({ url: encodeURIComponent(req.params.title) }, req.body)
 			.then(() => res.redirect(`/post/${req.body.url}`))
 			.catch(err => console.error(err))

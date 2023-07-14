@@ -45,3 +45,30 @@ h2 { font-size: 1.3em; }
 	width: 30px;
 	height: 30px;
 }
+
+#tags
+{
+	padding-top: 10px;
+	display: flex;
+}
+
+#tags a 
+{
+	margin-right: 10px;
+	
+	color: var(--tag-colour);
+	border: var(--tag-border);
+	padding: var(--tag-padding);
+	font-size: var(--tag-font-size);
+	background: var(--tag-background);
+	border-radius: var(--tag-border-radius);
+	text-decoration: var(--tag-text-decoration);
+}
+
+#tags a:hover
+{
+	color: var(--tag-hover-colour);
+	border: var(--tag-hover-border);
+	background: var(--tag-hover-background);
+	border-radius: var(--tag-hover-border-radius);
+}

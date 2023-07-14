@@ -95,6 +95,19 @@ textarea { margin-top: 15px; }
 	bottom: 3px;
 }
 
+#tagsContainer
+{
+	display: flex;
+}
+
+#tags
+{
+	margin: 0;
+	margin-left: 20px;
+	height: 100%;
+}
+
+
 #postIsActive
 {
 	position: relative;
