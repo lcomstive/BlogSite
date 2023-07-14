@@ -46,7 +46,7 @@ app.get('/', require('./controllers/homePage'))
 
 const allPosts = require('./controllers/allPosts')
 app.get('/posts', (req, res) => allPosts(req, res, 'allPosts'))
-app.get('/drafts', (req, res) => allPosts(req, res, 'allDrafts'))
+app.get('/drafts', auth, (req, res) => allPosts(req, res, 'allDrafts'))
 
 const newPost = require('./controllers/newPost')
 app.get('/post/new', auth, newPost.get)
