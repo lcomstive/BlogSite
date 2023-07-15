@@ -1,4 +1,4 @@
-input
+#content input
 {
 	display: block;
 	padding: 10px 10px;
@@ -22,6 +22,6 @@ input
 
 @media screen and (max-width: 600px)
 {
-	input { width: calc(100% - 20px); }
+	#content input { width: calc(100% - 20px); }
 	#submit { width: 100%; }
 }

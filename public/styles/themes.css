@@ -80,6 +80,12 @@
 	--nav-link-hover-colour:  	 var(--link-hover);
 	--nav-link-hover-background: var(--nav-background);
 
+	--nav-search-colour:		 var(--colour);
+	--nav-search-border:		 var(--button-border);
+	--nav-search-background:	 var(--button-background);
+	--nav-search-placeholder: 	 var(--placeholder-colour);
+	--nav-search-button-hover-colour: var(--button-hover-colour);
+
 	/* Footer */
 	--footer-background: 	none;
 	--footer-colour: 		var(--link);
@@ -251,6 +257,9 @@
 	--content-editor-colour: var(--colour-secondary);
 
 	--tag-hover-background: var(--button-hover-background);
+
+	--nav-search-placeholder: #0e9686;
+	--nav-search-button-hover-colour: #0e9686;
 }
 
 .theme-void

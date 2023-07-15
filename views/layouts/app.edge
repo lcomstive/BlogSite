@@ -32,22 +32,26 @@
 
 			@if(auth)
 			<a href="/drafts">Drafts</a>
-
-			<button onClick="location.href='/logout'" id="logout">
-				<i class="fa-solid fa-arrow-right-from-bracket"></i>
-			</button>
 			@endif
 
-			<span id="search">
-				<input value="{{ searchQuery ?? '' }}" placeholder="Search..." >
-				<button aria-label="Search Function">
-					<i class="fa-solid fa-magnifying-glass"></i>
+			<span id="rightHand">
+				<span id="search">
+					<input value="{{ searchQuery ?? '' }}" placeholder="Search..." >
+					<button aria-label="Search Function">
+						<i class="fa-solid fa-magnifying-glass"></i>
+					</button>
+				</span>
+
+				@if(auth)
+				<button onClick="location.href='/logout'" id="logout">
+					<i class="fa-solid fa-arrow-right-from-bracket"></i>
+				</button>
+				@endif
+				
+				<button id="settings" onClick="location.href = '/settings'" aria-label="Settings">
+					<i class="fa-solid fa-gear"></i>
 				</button>
 			</span>
-			
-			<button id="theme-switcher" onClick="location.href = '/settings'" aria-label="Settings">
-				<i class="fa-solid fa-gear"></i>
-			</button>
 		</nav>
 
 		<!-- Content -->
