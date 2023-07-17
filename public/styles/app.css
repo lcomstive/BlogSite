@@ -127,6 +127,8 @@ nav
 	padding: 5px 10px;
 	background: var(--nav-background);
 
+	min-height: 1.75em;
+
 	gap: 20px;
 	display: flex;
 	position: relative;
@@ -208,6 +210,9 @@ table td:nth-child(even)
 #search input
 {
 	transform: none;
+
+	position: absolute;
+	top: 0;
 
 	width: calc(100% - 2px);
 	height: calc(100% - 2px);
