@@ -1,0 +1,40 @@
+#searchParams
+{
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	width: calc(100% - 40px);
+	margin-bottom: 25px;
+}
+
+#searchParams input
+{
+	margin-left: 7.5px;
+	margin-right: 15px;
+	width: 8em;
+}
+
+#searchParams button { padding: 0 20px; }
+
+@media screen and (max-width: 650px)
+{
+	#searchParams
+	{
+		gap: 10px;
+		flex-direction: column;
+	}
+
+	#searchParams label
+	{
+		width: 50px;
+		display: inline-block;
+	}
+
+	#searchParams button
+	{
+		width: 35px;
+		height: 35px;
+		padding: 0;
+	}
+}

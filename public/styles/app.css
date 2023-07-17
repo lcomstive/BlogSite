@@ -176,7 +176,9 @@ table td:nth-child(even)
 	background: var(--secondary);
 }
 
-p.subtext { opacity: var(--hover-opacity); }
+#content .subtext { opacity: var(--hover-opacity); }
+
+#content .mobile-only { visibility: hidden; }
 
 /* Nav bar buttons on right-hand side of screen */
 #rightHand
@@ -241,6 +243,9 @@ p.subtext { opacity: var(--hover-opacity); }
 
 #content
 {
+	height: auto;
+	position: relative;
+	overflow: auto;
 	padding: 50px 0;
 	width: var(--content-width);
 	margin: 0 calc((100vw - var(--content-width)) * 0.5);
@@ -318,6 +323,8 @@ blockquote, q
 		margin: 0;
 		width: calc(100% - 60px);
 	}
+
+	#content .mobile-only { visibility: visible; }
 
 	footer .background { border-radius: 0; }
 
