@@ -53,13 +53,14 @@ h2 { font-size: 1.3em; }
 {
 	display: flex;
 	padding-top: 10px;
+	flex-wrap: wrap;
+	gap: 10px 10px;
 }
 
 #tags a 
 {
-	padding: 5px 22px;
+	padding: 5px 20px;
 	color: var(--text);
-	margin-right: 10px;
 	border-radius: 100px;
 	text-decoration: none;
 	background: var(--secondary);
