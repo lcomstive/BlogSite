@@ -17,7 +17,7 @@ module.exports =
 	tag: async (req, res) =>
 	{
 		// Get all posts containing tag
-		let posts = await Post.find({ tags: req.params.tag })
+		let posts = await Post.find({ tags: { $regex: new RegExp(req.params.tag, 'i') } })
 								.sort({ createdAt: -1 })
 		res.render('searchResults', {
 			posts,
