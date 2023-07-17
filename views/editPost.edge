@@ -1,6 +1,12 @@
 @layout('layouts/app.edge')
 
 @section('styles')
+<!-- Marked - Markdown parser -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<!-- Content panel/splitter -->
+<script src="https://unpkg.com/split.js/dist/split.min.js"></script>
+
 <script src="/js/formatPost.js"></script>
 <script src="/js/editPost.js"></script>
 
@@ -9,16 +15,13 @@
 @else
 	<link href="/styles/editPost.css" rel="stylesheet">
 @endif
-
-<!-- Marked - Markdown parser -->
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 @endsection
 
 @section('content')
 <h1>
 	{{ post ? "Edit" : "Create" }} Post
 	@if(post)
-	<button id="discardButton" onclick="location.reload()">Discard Changes <i class="fa-solid fa-trash"></i></button>
+	<button id="discardButton" class="secondary" onclick="location.reload()">Discard Changes <i class="fa-solid fa-trash"></i></button>
 	@endif
 </h1>
 
@@ -31,18 +34,10 @@
 			<input type="file" id="headerMedia" name="headerMedia" accept="image/*, video/*">
 			<div class="preview" id="headerPreview"></div>
 		</section>
-
-		<!-- Content Editor -->
-		<button onclick="TogglePreview()" type="button" id="previewToggle">Preview</button>
-		<span id="contentEditorContainer">
-			<textarea name="content" placeholder="Content" id="contentEditor" class="active">{{{ post?.content ?? "" }}}</textarea>
-			<span id="contentPreview" class="post-content"></span>
-		</span>
-		<br>
 		<!-- Tags -->
 		<label for="tags">Tags</label>
 		<p class="subtext" id="tagSubtext">Separate tags by a comma or semicolon</p>
-		<input name="tags" id="tags" placeholder="Post tags separated by a comma or semicolon" value="{{ post?.tags?.join(', ') ?? '' }}">
+		<input name="tags" id="tags" placeholder="tag1, tag2, tag3..." value="{{ post?.tags?.join(', ') ?? '' }}">
 
 		<section id="postIsActive">
 			<label for="isActive">Active</label>
@@ -53,7 +48,14 @@
 			>
 		</section>
 		<br>
-		<button id="submitForm">{{ post ? "Update" : "Create" }}</button>
+		<button id="submitForm" class="accent">{{ post ? "Update" : "Create" }}</button>
+		
+		<!-- Content Editor -->
+		<button onclick="TogglePreview()" type="button" id="previewToggle">Preview</button>
+		<span id="contentEditorContainer">
+			<textarea name="content" placeholder="Content" id="contentEditor" class="active">{{{ post?.content ?? "" }}}</textarea>
+			<span id="contentPreview" class="post-content"></span>
+		</span>
 	</form>
 </div>
 
@@ -71,5 +73,6 @@
 	const submitButton = document.getElementById('submitForm')
 	document.getElementById('isActive').addEventListener('change', (event) =>
 		submitButton.innerHTML = event.currentTarget.checked ? 'Publish Post' : 'Save Draft')
+
 </script>
 @endsection

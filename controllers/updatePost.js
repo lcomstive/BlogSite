@@ -15,8 +15,8 @@ module.exports =
 
 	post: async (req, res) =>
 	{
-		req.body.url = encodeURIComponent(req.body.title.replaceAll(' ', '-'))
 		req.body.content = req.body.content.replaceAll('\r\n', '\n')
+		req.body.url = encodeURIComponent(req.body.title.replaceAll(' ', '-'))
 
 		req.body.isActive = req.body.isActive != undefined && req.body.isActive.toLowerCase() == 'on'
 
@@ -45,7 +45,10 @@ module.exports =
 		}
 
 		// Split by comma and semicolon, including any whitespace before and after the separator
-		req.body.tags = req.body.tags?.split(/\s*,\s*|\s*;\s*/gm) ?? []
+		if(req.body.tags?.length > 0)
+			req.body.tags = req.body.tags?.split(/\s*,\s*|\s*;\s*/gm) ?? []
+		else
+			req.body.tags = []
 
 		Post.findOneAndUpdate({ url: encodeURIComponent(req.params.title) }, req.body)
 			.then(() => res.redirect(`/post/${req.body.url}`))

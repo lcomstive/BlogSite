@@ -18,7 +18,6 @@
 @endif
 
 <article>
-	<p class="publish-date">{{ post.createdAt.toLocaleDateString('en-AU') }}</p>
 	@if(auth)
 	<button onClick="location.href='/post/edit/{{ post.url }}'" id="edit"><i class="fa-solid fa-pen-to-square"></i></button>
 	@endif
@@ -29,6 +28,7 @@
 	@endif
 	<h1>{{ post.title }}</h1>
 	<p class="description">{{ post.description }}</h3>
+	<p class="publish-date">{{ post.createdAt.toLocaleDateString('en-AU') }}</p>
 
 	@if(post.tags)
 	<span id="tags">

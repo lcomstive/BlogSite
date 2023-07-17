@@ -35,12 +35,12 @@
 			@endif
 
 			<span id="rightHand">
-				<span id="search">
+				<div id="search">
 					<input value="{{ searchQuery ?? '' }}" placeholder="Search..." >
 					<button aria-label="Search Function">
 						<i class="fa-solid fa-magnifying-glass"></i>
 					</button>
-				</span>
+				</div>
 
 				@if(auth)
 				<button onClick="location.href='/logout'" id="logout">
@@ -61,8 +61,7 @@
 
 		<!-- Footer -->
 		<footer>
-			<p>© Lewis Comstive 2023</p>
-			<hr>
+			<div class="background"></div>
 
 			@if(auth)
 			<a href="/post/new">New post</a>
@@ -70,6 +69,10 @@
 			@else
 			<a href="/login">Login</a>
 			@endif
+
+			<hr>
+
+			<p>© Lewis Comstive 2023</p>
 		</footer>
 
 		<!-- Settings load and apply -->
