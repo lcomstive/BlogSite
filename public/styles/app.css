@@ -181,6 +181,8 @@ table td:nth-child(even)
 	background: var(--table-odd-background);
 }
 
+.publish-date { transition: opacity var(--transition-time) ease-in-out; }
+
 /* Nav bar buttons on right-hand side of screen */
 #rightHand
 {

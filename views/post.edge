@@ -18,7 +18,7 @@
 @endif
 
 <article>
-	<p class="publish-date">{{ post.createdAt.toDateString() }}</p>
+	<p class="publish-date">{{ post.createdAt.toLocaleDateString('en-AU') }}</p>
 	@if(auth)
 	<button onClick="location.href='/post/edit/{{ post.url }}'" id="edit"><i class="fa-solid fa-pen-to-square"></i></button>
 	@endif
@@ -47,7 +47,7 @@
 		headerIds: false
 	})
 
-	let contents = "{{{ post.content.replaceAll('"', '\\"') }}}"
+	let contents = `{{{ post.content.replaceAll('"', '\\"').replaceAll('\`', '\\\`') }}}`
 	document.getElementById('post-content').innerHTML = FormatPost(contents)
 </script>
 @endsection

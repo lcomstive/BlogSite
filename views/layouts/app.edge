@@ -67,7 +67,6 @@
 			@if(auth)
 			<a href="/post/new">New post</a>
 			<a href="/profile">Profile</a>
-			<!-- <a href="/users">Users</a> -->
 			@else
 			<a href="/login">Login</a>
 			@endif
@@ -159,9 +158,9 @@
 
 			ResetSearchInterval = () =>
 			{
-				if(searchInput)
+				if(searchInterval)
 					clearInterval(searchInterval)
-				searchButton = setInterval(DoSearch, SearchInputDelay)
+				searchInterval = setInterval(DoSearch, SearchInputDelay)
 			}
 
 			searchButton.addEventListener('click', ToggleSearchBar)

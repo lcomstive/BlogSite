@@ -10,7 +10,6 @@ const fileUpload = require('express-fileupload')
 const expressSession = require('express-session')
 
 const auth = require('./middleware/auth')
-const User = require('./database/models/User')
 
 require('dotenv').config()
 
@@ -18,7 +17,8 @@ require('dotenv').config()
 let mongoIP = process.env.MONGO_IP || "127.0.0.1"
 let mongoPort = process.env.MONGO_PORT || 27017
 let dbName = process.env.MONGO_DBNAME || 'blog'
-mongoose.connect(`mongodb://${mongoIP}:${mongoPort}/${dbName}`, { useNewUrlParser: true })
+mongoose.connect(`mongodb://${mongoIP}:${mongoPort}/${dbName}`,
+					{ useNewUrlParser: true, autoIndex: !process.env.PRODUCTION })
 	.then(() => console.log('Connected to Mongo'))
 	.catch(err => console.error('Failed to connect to Mongo database', err))
 
@@ -71,7 +71,10 @@ app.post('/users', auth, userController.addNew)
 
 app.get('/logout', auth, require('./controllers/userLogout'))
 
-app.get('/search/:query', require('./controllers/search'))
+const searchController = require('./controllers/search')
+app.get('/tag/:tag', searchController.tag)
+app.get('/search/:query', searchController.general)
+
 app.get('/settings', (req, res) => res.render('settings', { auth: req.session.renderer, production: process.env.PRODUCTION ?? false }))
 
 // Start listening
