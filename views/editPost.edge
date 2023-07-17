@@ -21,7 +21,7 @@
 <h1>
 	{{ post ? "Edit" : "Create" }} Post
 	@if(post)
-	<button id="discardButton" onclick="location.reload()">Discard Changes <i class="fa-solid fa-trash"></i></button>
+	<button id="discardButton" class="secondary" onclick="location.reload()">Discard Changes <i class="fa-solid fa-trash"></i></button>
 	@endif
 </h1>
 
@@ -34,11 +34,10 @@
 			<input type="file" id="headerMedia" name="headerMedia" accept="image/*, video/*">
 			<div class="preview" id="headerPreview"></div>
 		</section>
-
 		<!-- Tags -->
 		<label for="tags">Tags</label>
 		<p class="subtext" id="tagSubtext">Separate tags by a comma or semicolon</p>
-		<input name="tags" id="tags" placeholder="Post tags separated by a comma or semicolon" value="{{ post?.tags?.join(', ') ?? '' }}">
+		<input name="tags" id="tags" placeholder="tag1, tag2, tag3..." value="{{ post?.tags?.join(', ') ?? '' }}">
 
 		<section id="postIsActive">
 			<label for="isActive">Active</label>
@@ -49,7 +48,7 @@
 			>
 		</section>
 		<br>
-		<button id="submitForm">{{ post ? "Update" : "Create" }}</button>
+		<button id="submitForm" class="accent">{{ post ? "Update" : "Create" }}</button>
 		
 		<!-- Content Editor -->
 		<button onclick="TogglePreview()" type="button" id="previewToggle">Preview</button>
