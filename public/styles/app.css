@@ -256,7 +256,7 @@ footer
 	margin: 20px calc((100vw - var(--content-width)) * 0.5);
 }
 
-footer .background:hover { opacity: 3% !important; }
+footer .background:hover { opacity: var(--background-panel-opacity) !important; }
 
 footer p { margin: 5px 0; }
 footer hr { border-color: var(--text); opacity: 0.1; }
@@ -282,14 +282,14 @@ div.background
 	top: 0; bottom: 0;
 	left: 0; right: 0;
 	
-	opacity: 3%;
+	opacity: var(--background-panel-opacity);
 	background-color: var(--text);
 	border-radius: var(--border-radius);
 
 	transition: opacity var(--transition-time) ease-out;
 }
 
-div.background:hover { opacity: 5%; }
+div.background:hover { opacity: var(--background-panel-hover-opacity); }
 
 /* Post Contents */
 .post-content h2 { font-size: 1.3em; }

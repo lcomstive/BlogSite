@@ -11,6 +11,9 @@
 	--hover-opacity: 0.8;
 	--disabled-opacity: 0.45;
 
+	--background-panel-opacity: 10%;
+	--background-panel-hover-opacity: 20%;
+
 	--border-radius: 5px;
 	--line-height: normal;
 	--transition-time: 0.15s;
@@ -32,12 +35,11 @@
 
 .theme-blue
 {
-	--text: #071327;
-	--background: #eef3fc;
-	--primary: #9cbbec;
-	--secondary: #bfd3f3;
-	--accent: #2561c1;
-	--accent-button-text: var(--background);
+	--text: #fff;
+	--background: #242582;
+	--primary: #553d67;
+	--secondary: #c2576e;
+	--accent: #f64c72;
 }
 
 .theme-crimson
@@ -47,13 +49,4 @@
 	--primary: #832a2d;
 	--secondary: #2e0e11;
 	--accent: #b1393d;
-}
-
-.theme-frog
-{
-	--text: #00160d;
-	--background: #00e280;
-	--primary: #39d08f;
-	--secondary: #c5f1de;
-	--accent: #00ff91;
 }

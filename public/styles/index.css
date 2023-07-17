@@ -51,7 +51,11 @@
 	min-height: unset;
 }
 
-#see-more:hover { background: var(--secondary); }
+#see-more:hover
+{
+	color: var(--accent-button-text);
+	background: var(--accent);
+}
 
 @media screen and (max-width: 600px)
 {
