@@ -21,6 +21,7 @@ h2 { font-size: 1.3em; }
 {
 	font-size: inherit;
 	padding-top: 30px;
+	overflow-x: auto;
 }
 
 #headerMedia

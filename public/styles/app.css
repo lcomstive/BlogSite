@@ -200,6 +200,7 @@ p.subtext { opacity: var(--hover-opacity); }
 
 #search input
 {
+	z-index: 5;
 	transform: none;
 
 	position: absolute;
@@ -315,9 +316,10 @@ blockquote, q
 	footer
 	{
 		margin: 0;
-		width: 100%;
-		border-radius: 0;
+		width: calc(100% - 60px);
 	}
+
+	footer .background { border-radius: 0; }
 
 	#search input.active
 	{
