@@ -64,3 +64,9 @@ h2 { font-size: 1.3em; }
 	text-decoration: none;
 	background: var(--secondary);
 }
+
+#tags a:hover
+{
+	color: var(--accent-button-text);
+	background: var(--accent);
+}

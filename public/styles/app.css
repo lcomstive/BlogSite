@@ -67,6 +67,7 @@ button:disabled, select:disabled, input:disabled, textarea:disabled
 
 #content button
 {
+	cursor: pointer;
 	padding: 10px 35px;
 }
 
@@ -269,7 +270,11 @@ footer a
 /* Helper classes */
 button.primary 	 { background: var(--primary); }
 button.secondary { background: var(--secondary); }
-button.accent 	 { background: var(--accent); }
+button.accent
+{
+	color: var(--accent-button-text);
+	background: var(--accent);
+}
 
 div.background
 {
