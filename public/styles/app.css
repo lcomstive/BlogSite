@@ -183,6 +183,8 @@ table td:nth-child(even)
 
 .publish-date { transition: opacity var(--transition-time) ease-in-out; }
 
+.subtext { color: var(--subtext-colour); }
+
 /* Nav bar buttons on right-hand side of screen */
 #rightHand
 {

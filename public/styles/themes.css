@@ -169,6 +169,7 @@
 .theme-dark
 {
 	--accent-colour: #6d6dff;
+	--subtext-colour: #c6c6c6;
 
 	--separator: 1px solid #2f2f2f;
 	

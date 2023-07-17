@@ -95,18 +95,17 @@ textarea { margin-top: 15px; }
 	bottom: 3px;
 }
 
-#tagsContainer
-{
-	display: flex;
-}
-
 #tags
 {
 	margin: 0;
-	margin-left: 20px;
-	height: 100%;
+	margin-bottom: 25px;
 }
 
+#tagSubtext
+{
+	margin: 5px 0;
+	font-size: 0.8em;
+}
 
 #postIsActive
 {

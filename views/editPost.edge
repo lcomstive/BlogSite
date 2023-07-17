@@ -39,11 +39,11 @@
 			<span id="contentPreview" class="post-content"></span>
 		</span>
 		<br>
-		<section id="tagsContainer">
-			<label for="tags">Tags</label>
-			<input name="tags" id="tags" placeholder="Post tags separated by a comma or semicolon" value="{{ post?.tags?.join(', ') ?? '' }}">
-		</section>
-		<br>
+		<!-- Tags -->
+		<label for="tags">Tags</label>
+		<p class="subtext" id="tagSubtext">Separate tags by a comma or semicolon</p>
+		<input name="tags" id="tags" placeholder="Post tags separated by a comma or semicolon" value="{{ post?.tags?.join(', ') ?? '' }}">
+
 		<section id="postIsActive">
 			<label for="isActive">Active</label>
 			<input type="checkbox" name="isActive" id="isActive"
