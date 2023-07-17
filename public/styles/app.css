@@ -176,7 +176,9 @@ table td:nth-child(even)
 	background: var(--secondary);
 }
 
-p.subtext { opacity: var(--hover-opacity); }
+#content .subtext { opacity: var(--hover-opacity); }
+
+#content .mobile-only { visibility: hidden; }
 
 /* Nav bar buttons on right-hand side of screen */
 #rightHand
@@ -200,6 +202,7 @@ p.subtext { opacity: var(--hover-opacity); }
 
 #search input
 {
+	z-index: 5;
 	transform: none;
 
 	position: absolute;
@@ -240,6 +243,9 @@ p.subtext { opacity: var(--hover-opacity); }
 
 #content
 {
+	height: auto;
+	position: relative;
+	overflow: auto;
 	padding: 50px 0;
 	width: var(--content-width);
 	margin: 0 calc((100vw - var(--content-width)) * 0.5);
@@ -256,7 +262,7 @@ footer
 	margin: 20px calc((100vw - var(--content-width)) * 0.5);
 }
 
-footer .background:hover { opacity: 3% !important; }
+footer .background:hover { opacity: var(--background-panel-opacity) !important; }
 
 footer p { margin: 5px 0; }
 footer hr { border-color: var(--text); opacity: 0.1; }
@@ -282,14 +288,14 @@ div.background
 	top: 0; bottom: 0;
 	left: 0; right: 0;
 	
-	opacity: 3%;
+	opacity: var(--background-panel-opacity);
 	background-color: var(--text);
 	border-radius: var(--border-radius);
 
 	transition: opacity var(--transition-time) ease-out;
 }
 
-div.background:hover { opacity: 5%; }
+div.background:hover { opacity: var(--background-panel-hover-opacity); }
 
 /* Post Contents */
 .post-content h2 { font-size: 1.3em; }
@@ -315,9 +321,12 @@ blockquote, q
 	footer
 	{
 		margin: 0;
-		width: 100%;
-		border-radius: 0;
+		width: calc(100% - 60px);
 	}
+
+	#content .mobile-only { visibility: visible; }
+
+	footer .background { border-radius: 0; }
 
 	#search input.active
 	{

@@ -19,6 +19,7 @@
 	cursor: pointer;
 	min-height: 100px;
 	position: relative;
+	min-width: 250px;
 	width: calc(33% - (var(--post-gap) * 0.5) - (var(--post-padding) * 2) - 2px);
 
 	color: var(--text);
@@ -51,7 +52,11 @@
 	min-height: unset;
 }
 
-#see-more:hover { background: var(--secondary); }
+#see-more:hover
+{
+	color: var(--accent-button-text);
+	background: var(--accent);
+}
 
 @media screen and (max-width: 600px)
 {

@@ -3,13 +3,65 @@
 @section('styles')
 	@if(production)
 		<link href="/styles/index.min.css" rel="stylesheet">
+		<link href="/styles/search.min.css" rel="stylesheet">
 	@else
 		<link href="/styles/index.css" rel="stylesheet">
+		<link href="/styles/search.css" rel="stylesheet">
 	@endif
+
+	<script>
+		SortBy = (method) =>
+		{
+			const url = new URL(location.href)
+			const params = new URLSearchParams(url.search)
+			params.set('sort', method)
+			
+			location.href = `${url.origin}${url.pathname}?${params}`
+		}
+
+		UpdateDateRange = () =>
+		{
+			const url = new URL(location.href)
+			const params = new URLSearchParams(url.search)
+
+			let from = document.getElementById('dateFrom').value
+			if(from) params.set('min', from)
+			else params.delete('min')
+
+			let to = document.getElementById('dateTo').value
+			if(to) params.set('max', to)
+			else params.delete('max')
+			
+			location.href = `${url.origin}${url.pathname}?${params}`
+		}
+	</script>
 @endsection
 
 @section('content')
-	<h1>All Posts</h1>
+	<h1>Results for <span class="subtext">'{{ searchQuery ?? tag }}'<span></h1>
+
+	@if(posts)
+	<span id="searchParams">
+		<span>
+			<label for="dateFrom">From</label>
+			<input type="date" id="dateFrom" name="dateFrom"
+					oninput="UpdateDateRange()"
+					min="{{ dateMin }}" max="{{ dateMax }}" value="{{ dateMin }}" >
+		</span>
+		<span>
+			<label for="dateTo">To</label>
+			<input type="date" id="dateTo" name="dateTo"
+					oninput="UpdateDateRange()"
+					min="{{ dateMin }}" max="{{ dateMax }}" value="{{ dateMax }}">
+		</span>
+
+		@if(sort == 'asc')
+			<button onclick="SortBy('desc')" class="secondary"><i class="fa-solid fa-arrow-down-wide-short"></i></button>
+		@else
+			<button onclick="SortBy('asc')" class="secondary"><i class="fa-solid fa-arrow-up-wide-short"></i></button>
+		@endif
+	</span>
+
 	<section class="posts-list">
 		@each(post in posts)
 			@if(post.isActive)
@@ -17,4 +69,7 @@
 			@endif
 		@endeach
 	</section>
+	@else
+	<h3>Nothing found</h3>
+	@endif
 @endsection
