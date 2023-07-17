@@ -77,6 +77,20 @@ app.get('/search/:query', searchController.general)
 
 app.get('/settings', (req, res) => res.render('settings', { auth: req.session.renderer, production: process.env.PRODUCTION ?? false }))
 
+// No route found, most likely 404
+// Must be after all valid routes ^
+app.get('*', (req, res) =>
+{
+	res.status(404)
+
+	if(req.accepts('html'))
+		res.render('notFound', { auth: req.session.renderer, production: process.env.PRODUCTION ?? false })
+	else if(req.accepts('json'))
+		res.json({ error: 'Not found' })
+	else // Default to text
+		res.type('txt').send('Not found')
+})
+
 // Start listening
 let port = process.env.PORT || 3000
 let sslKey = process.env.SSL_KEY
