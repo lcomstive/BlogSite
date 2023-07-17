@@ -11,6 +11,7 @@ module.exports =
 
 	post: async (req, res) =>
 	{
+		req.body.content = req.body.content.replaceAll('\r\n', '\n')
 		req.body.url = encodeURIComponent(req.body.title.replaceAll(' ', '-'))
 
 		req.body.isActive = req.body.isActive != undefined && req.body.isActive.toLowerCase() == 'on'
@@ -32,6 +33,12 @@ module.exports =
 			if(VideoExtensions.includes(imagePath.split('.').pop()))
 				req.body.headerMediaType = 'video'
 		}
+
+		// Split by comma and semicolon, including any whitespace before and after the separator
+		if(req.body.tags?.length > 0)
+			req.body.tags = req.body.tags?.split(/\s*,\s*|\s*;\s*/gm) ?? []
+		else
+			req.body.tags = []
 	
 		Post.create(req.body)
 			.then(() => res.redirect(`/post/${req.body.url}`))

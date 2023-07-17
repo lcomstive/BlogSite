@@ -121,7 +121,8 @@ textarea { margin-top: 15px; }
 
 #contentEditorContainer
 {
-	display: block;
+	width: 100%;
+	display: flex;
 	position: relative;
 	border: var(--preview-border);
 	border-radius: var(--border-radius);
@@ -131,22 +132,27 @@ textarea { margin-top: 15px; }
 
 #contentEditorContainer > textarea
 {
-	padding: 10px;
-	margin: 5px;
-	margin-top: 10px;
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
 	color: var(--content-editor-colour);
 	background: var(--content-editor-background);
+
+	height: auto;
+	overflow-y: auto;
 }
 
 #contentEditorContainer > span { margin: 0; }
 
 #contentEditorContainer > textarea, #contentEditorContainer > span
 {
-	width: calc(50% - 40px);
-	float: left;
 	outline: none;
 	border: none;
-	padding: 10px;
+
+	word-wrap: unset;
+	word-break: unset;
+	overflow-x: auto;
+	white-space: nowrap;
 }
 
 #contentEditorContainer > span { background: none; }
@@ -173,6 +179,12 @@ textarea { margin-top: 15px; }
 	border: var(--preview-button-border);
 	color: var(--preview-button-active-colour);
 	background-color: var(--preview-button-active-background);
+}
+
+.gutter
+{
+	background-color: var(--subtext-colour);
+	cursor: col-resize;
 }
 
 @media screen and (max-width: 1100px)

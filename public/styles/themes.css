@@ -13,6 +13,8 @@
 
 	--transition-time: 0.15s;
 
+	--line-height: normal;
+
 	/* Horizontal line (hr) */
 	--separator: 1px solid var(--colour);
 

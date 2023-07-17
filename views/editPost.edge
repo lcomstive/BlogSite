@@ -1,6 +1,12 @@
 @layout('layouts/app.edge')
 
 @section('styles')
+<!-- Marked - Markdown parser -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<!-- Content panel/splitter -->
+<script src="https://unpkg.com/split.js/dist/split.min.js"></script>
+
 <script src="/js/formatPost.js"></script>
 <script src="/js/editPost.js"></script>
 
@@ -9,9 +15,6 @@
 @else
 	<link href="/styles/editPost.css" rel="stylesheet">
 @endif
-
-<!-- Marked - Markdown parser -->
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 @endsection
 
 @section('content')
@@ -32,13 +35,6 @@
 			<div class="preview" id="headerPreview"></div>
 		</section>
 
-		<!-- Content Editor -->
-		<button onclick="TogglePreview()" type="button" id="previewToggle">Preview</button>
-		<span id="contentEditorContainer">
-			<textarea name="content" placeholder="Content" id="contentEditor" class="active">{{{ post?.content ?? "" }}}</textarea>
-			<span id="contentPreview" class="post-content"></span>
-		</span>
-		<br>
 		<!-- Tags -->
 		<label for="tags">Tags</label>
 		<p class="subtext" id="tagSubtext">Separate tags by a comma or semicolon</p>
@@ -54,6 +50,13 @@
 		</section>
 		<br>
 		<button id="submitForm">{{ post ? "Update" : "Create" }}</button>
+		
+		<!-- Content Editor -->
+		<button onclick="TogglePreview()" type="button" id="previewToggle">Preview</button>
+		<span id="contentEditorContainer">
+			<textarea name="content" placeholder="Content" id="contentEditor" class="active">{{{ post?.content ?? "" }}}</textarea>
+			<span id="contentPreview" class="post-content"></span>
+		</span>
 	</form>
 </div>
 
@@ -71,5 +74,6 @@
 	const submitButton = document.getElementById('submitForm')
 	document.getElementById('isActive').addEventListener('change', (event) =>
 		submitButton.innerHTML = event.currentTarget.checked ? 'Publish Post' : 'Save Draft')
+
 </script>
 @endsection

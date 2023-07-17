@@ -12,6 +12,7 @@ html, body
 	background: var(--background);
 
 	overflow-x: hidden;
+	line-height: var(--line-height);
 }
 
 img

@@ -1,4 +1,5 @@
 const VideoExtensions = [ 'mp4', 'webm', 'ogg']
+const MinEditorLines = 10
 
 var headerMediaFileChooser = null
 var headerMediaPreview = null
@@ -6,8 +7,19 @@ var headerMediaPreview = null
 var contentEditor = null
 var contentPreviewer = null
 
-OnContentChanged = () =>
+const MinSizeForSplitter = 1100 // pixels, width
+var splitter = null
+
+const splitterOptions =
 {
+	minSize: [ 0, 0 ],
+	snapOffset: 0,
+	dragInterval: 1
+}
+
+OnContentChanged = () =>
+{	
+	/*
 	let scrollPos = document.documentElement.scrollTop
 
 	// Adjusts size of the textarea containing article contents
@@ -15,6 +27,11 @@ OnContentChanged = () =>
 	contentEditor.style.height = (25 + contentEditor.scrollHeight) + "px";
 
 	document.documentElement.scrollTop = scrollPos
+	*/
+
+	let lines = contentEditor.value.match(/\r|\n/gm)?.length ?? 0
+	let fontSize = document.body.style.fontSize.replaceAll('px', '') * 1.4
+	contentEditor.style.minHeight = Math.max(lines, MinEditorLines) * fontSize + 'px'
 
 	contentPreviewer.innerHTML = FormatPost(contentEditor.value)
 }
@@ -118,6 +135,19 @@ TogglePreview = () =>
 	document.getElementById('contentPreview').classList.toggle('active')
 }
 
+WindowResized = () =>
+{
+	if(window.innerWidth >= MinSizeForSplitter && splitter == null)
+		splitter = Split([ '#contentEditor', '#contentPreview' ], splitterOptions)
+	else if(window.innerWidth < MinSizeForSplitter && splitter != null)
+	{
+		splitter.destroy()
+		splitter = null
+	}
+}
+
+window.addEventListener('resize', WindowResized)
+
 window.addEventListener('load', () =>
 {
 	marked.use({
@@ -127,7 +157,7 @@ window.addEventListener('load', () =>
 	contentEditor = document.getElementById('contentEditor')
 	contentPreviewer = document.getElementById('contentPreview')
 
-	contentEditor.addEventListener('keyup', (event) => OnContentChanged())
+	contentEditor.addEventListener('input', OnContentChanged)
 	OnContentChanged()
 
 	headerMediaFileChooser = document.getElementById('headerMedia')
@@ -136,4 +166,6 @@ window.addEventListener('load', () =>
 	headerMediaFileChooser.addEventListener('change', UpdateHeaderPreview)
 
 	UpdateHeaderPreview()
+
+	WindowResized()
 })
