@@ -24,7 +24,7 @@ module.exports =
 		if(req.session?.userID ?? false)
 			res.redirect('/') // Already logged in
 		else
-			res.render('login', { firstTimeSetup })
+			res.render('login', { firstTimeSetup, production: process.env.PRODUCTION ?? false })
 	},
 
 	post: async (req, res) =>

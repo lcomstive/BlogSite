@@ -1,7 +1,11 @@
 @layout('layouts/app.edge')
 
 @section('styles')
-<link href="/styles/index.min.css" rel="stylesheet">
+	@if(production)
+		<link href="/styles/index.min.css" rel="stylesheet">
+	@else
+		<link href="/styles/index.css" rel="stylesheet">
+	@endif
 @endsection
 
 @section('content')
@@ -10,7 +14,7 @@
 		@each(post in posts)
 			@if(!post.isActive)
 				<a class="post-preview" href="/post/{{ post.url }}">
-					<p class="publish-date">{{ post.createdAt.toLocaleDateString() }}</p>
+					<p class="publish-date">{{ post.createdAt.toLocaleDateString('en-AU') }}</p>
 					<h2 class="post-title">{{ post.title }}</h2>
 					<p class="post-description">{{ post.description }}</p>
 				</a>

@@ -10,14 +10,13 @@ module.exports =
 	get: async (req, res) =>
 	{
 		const post = await Post.findOne({ url: encodeURIComponent(req.params.title) })
-		res.render('editPost', { post, auth: req.session.renderer })
+		res.render('editPost', { post, auth: req.session.renderer, production: process.env.PRODUCTION ?? false })
 	},
 
 	post: async (req, res) =>
 	{
 		req.body.url = encodeURIComponent(req.body.title.replaceAll(' ', '-'))
-		req.body.content = req.body.content.replaceAll('\r\n', '<br>')
-											.replaceAll('\n', '<br>')
+		req.body.content = req.body.content.replaceAll('\r\n', '\n')
 
 		req.body.isActive = req.body.isActive != undefined && req.body.isActive.toLowerCase() == 'on'
 
@@ -44,6 +43,9 @@ module.exports =
 			if(VideoExtensions.includes(imagePath.split('.').pop()))
 				req.body.headerMediaType = 'video'
 		}
+
+		// Split by comma and semicolon, including any whitespace before and after the separator
+		req.body.tags = req.body.tags?.split(/\s*,\s*|\s*;\s*/gm) ?? []
 
 		Post.findOneAndUpdate({ url: encodeURIComponent(req.params.title) }, req.body)
 			.then(() => res.redirect(`/post/${req.body.url}`))

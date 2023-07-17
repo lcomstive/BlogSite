@@ -3,7 +3,12 @@
 @section('styles')
 <script src="/js/formatPost.js"></script>
 <script src="/js/editPost.js"></script>
-<link href="/styles/editPost.min.css" rel="stylesheet">
+
+@if(production)
+	<link href="/styles/editPost.min.css" rel="stylesheet">
+@else
+	<link href="/styles/editPost.css" rel="stylesheet">
+@endif
 
 <!-- Marked - Markdown parser -->
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -33,8 +38,12 @@
 			<textarea name="content" placeholder="Content" id="contentEditor" class="active">{{{ post?.content ?? "" }}}</textarea>
 			<span id="contentPreview" class="post-content"></span>
 		</span>
-
 		<br>
+		<!-- Tags -->
+		<label for="tags">Tags</label>
+		<p class="subtext" id="tagSubtext">Separate tags by a comma or semicolon</p>
+		<input name="tags" id="tags" placeholder="Post tags separated by a comma or semicolon" value="{{ post?.tags?.join(', ') ?? '' }}">
+
 		<section id="postIsActive">
 			<label for="isActive">Active</label>
 			<input type="checkbox" name="isActive" id="isActive"

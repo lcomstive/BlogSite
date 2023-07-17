@@ -1,7 +1,11 @@
 @layout('layouts/app.edge')
 
 @section('styles')
-<link href="/styles/post.min.css" rel="stylesheet">
+@if(production)
+	<link href="/styles/post.min.css" rel="stylesheet">
+@else
+	<link href="/styles/post.css" rel="stylesheet">
+@endif
 <script src="/js/formatPost.js"></script>
 
 <!-- Marked - Markdown parser -->
@@ -14,7 +18,7 @@
 @endif
 
 <article>
-	<p class="publish-date">{{ post.createdAt.toDateString() }}</p>
+	<p class="publish-date">{{ post.createdAt.toLocaleDateString('en-AU') }}</p>
 	@if(auth)
 	<button onClick="location.href='/post/edit/{{ post.url }}'" id="edit"><i class="fa-solid fa-pen-to-square"></i></button>
 	@endif
@@ -25,6 +29,14 @@
 	@endif
 	<h1>{{ post.title }}</h1>
 	<p class="description">{{ post.description }}</h3>
+
+	@if(post.tags)
+	<span id="tags">
+		@each(tag in post.tags)
+			<a href="/tag/{{ tag }}">{{ tag }}</a>
+		@endeach
+	</span>
+	@endif
 	<hr>
 	<section id="post-content" class="post-content"></section>
 </article>
@@ -35,7 +47,7 @@
 		headerIds: false
 	})
 
-	let contents = "{{{ post.content.replaceAll('"', '\\"') }}}"
+	let contents = `{{{ post.content.replaceAll('"', '\\"').replaceAll('\`', '\\\`') }}}`
 	document.getElementById('post-content').innerHTML = FormatPost(contents)
 </script>
 @endsection

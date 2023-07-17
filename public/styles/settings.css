@@ -39,19 +39,19 @@ body
 
 .numberChanger > input
 {
-	width: 30px;
+	width: 30px !important;
 	font-size: 0.75em;
-	display: inline-block;
+	display: inline-block !important;
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button
+#content input::-webkit-outer-spin-button,
+#content input::-webkit-inner-spin-button
 {
 	margin: 0;
 	-webkit-appearance: none;
 }
 
-input[type=number] { -moz-appearance: textfield; }
+#content input[type=number] { -moz-appearance: textfield; }
 
 @media screen and (max-width: 600px)
 {

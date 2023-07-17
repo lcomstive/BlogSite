@@ -1,8 +1,13 @@
 @layout('layouts/app.edge')
 
 @section('styles')
-<link href="/styles/users.min.css" rel="stylesheet">
-<link href="/styles/settings.min.css" rel="stylesheet">
+@if(production)
+	<link href="/styles/users.min.css" rel="stylesheet">
+	<link href="/styles/settings.min.css" rel="stylesheet">
+@else
+	<link href="/styles/users.css" rel="stylesheet">
+	<link href="/styles/settings.css" rel="stylesheet">
+@endif
 @endsection
 
 @section('content')

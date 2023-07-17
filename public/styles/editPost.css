@@ -95,6 +95,18 @@ textarea { margin-top: 15px; }
 	bottom: 3px;
 }
 
+#tags
+{
+	margin: 0;
+	margin-bottom: 25px;
+}
+
+#tagSubtext
+{
+	margin: 5px 0;
+	font-size: 0.8em;
+}
+
 #postIsActive
 {
 	position: relative;

@@ -7,7 +7,7 @@ module.exports = async (req, res) =>
 	{
 		if(post.isActive || req.session.userID)
 		{
-			res.render('post', { post, auth: req.session.renderer })
+			res.render('post', { post, auth: req.session.renderer, production: process.env.PRODUCTION ?? false })
 			return
 		}
 	}

@@ -70,7 +70,6 @@ UpdateHeaderPreview = (clear = false) =>
 
 ValidateForm = () =>
 {
-	
 	if(document.getElementsByName('title')[0].value == '' ||
 		document.getElementsByName('description')[0].value == '' ||
 		document.getElementsByName('content')[0].value == '')

@@ -7,6 +7,7 @@ const PostSchema = new mongoose.Schema({
 	url: String,
 	headerMedia: String,
 	headerMediaType: String,
+	tags: [String],
 	isActive:
 	{
 		type: Boolean,
@@ -17,6 +18,13 @@ const PostSchema = new mongoose.Schema({
 		type: Date,
 		default: new Date()
 	}
+})
+
+PostSchema.index({
+	'title': 'text',
+	'description': 'text',
+	'content': 'text',
+	'tags': 'text'
 })
 
 module.exports = mongoose.model('Post', PostSchema)

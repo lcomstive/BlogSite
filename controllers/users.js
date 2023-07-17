@@ -3,12 +3,12 @@ const User = require('../database/models/User')
 
 module.exports =
 {
-	get: async (req, res) => res.render('profile', { auth: req.session.renderer }),
+	get: async (req, res) => res.render('profile', { auth: req.session.renderer, production: process.env.PRODUCTION ?? false }),
 	
 	getAll: async (req, res) =>
 	{
 		let users = await User.find({})
-		res.render('users', { users, auth: req.session.renderer })	
+		res.render('users', { users, auth: req.session.renderer, production: process.env.PRODUCTION ?? false })	
 	},
 
 	update: (req, res) =>

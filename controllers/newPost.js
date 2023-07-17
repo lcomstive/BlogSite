@@ -7,7 +7,7 @@ const VideoExtensions = [ 'mp4', 'webm', 'ogg']
 
 module.exports =
 {
-	get: (req, res) => res.render('editPost', { auth: req.session.renderer }),
+	get: (req, res) => res.render('editPost', { auth: req.session.renderer, production: process.env.PRODUCTION ?? false }),
 
 	post: async (req, res) =>
 	{
