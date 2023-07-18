@@ -72,15 +72,13 @@ button:hover, select:hover
 
 button:disabled, select:disabled, input:disabled, textarea:disabled
 {
+	cursor: default !important;
 	opacity: var(--disabled-opacity);
 	transition: var(--transition-time) ease-in-out;
 }
 
-#content button
-{
-	cursor: pointer;
-	padding: 10px 35px;
-}
+button { cursor: pointer; }
+#content button { padding: 10px 35px; }
 
 input, textarea
 {

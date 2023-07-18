@@ -17,6 +17,28 @@
 
 #searchParams button { padding: 0 20px; }
 
+#pages
+{
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+
+#pages button
+{
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	padding: 0;
+}
+
+#pages button:first-child, #pages button:last-child
+{ width: 60px; }
+
+#pages button:first-child { margin-right: 20px; }
+#pages button:last-child  { margin-left: 20px; }
+
 @media screen and (max-width: 650px)
 {
 	#searchParams

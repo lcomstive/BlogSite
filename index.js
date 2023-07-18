@@ -79,6 +79,9 @@ const searchController = require('./controllers/search')
 app.get('/posts', searchController.allPosts)
 app.get('/drafts', auth, searchController.allDrafts)
 
+app.get('/tag/:tag', searchController.tag)
+app.get('/search/:query', searchController.general)
+
 const newPost = require('./controllers/newPost')
 app.get('/post/new', auth, newPost.get)
 app.post('/post/create', auth, newPost.post)
@@ -101,9 +104,6 @@ app.get('/users', auth, userController.getAll)
 app.post('/users', auth, userController.addNew)
 
 app.get('/logout', auth, require('./controllers/userLogout'))
-
-app.get('/tag/:tag', searchController.tag)
-app.get('/search/:query', searchController.general)
 
 app.get('/settings', (req, res) => res.render('settings', { auth: req.session.renderer, production: process.env.PRODUCTION ?? false }))
 
