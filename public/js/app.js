@@ -20,6 +20,12 @@ if(theme == null)
 	localStorage.setItem('theme', theme)
 }
 
+OpenMobileMenu = () =>
+{
+	let active = document.getElementsByTagName('nav')[0].classList.toggle('active')
+	document.getElementById('mobileMenu').innerHTML = `<i class="fa-solid fa-${active ? 'xmark' : 'bars'}"></i>`
+}
+
 // Load font
 let font = localStorage.getItem('font') ?? DefaultFont
 let fontSize = localStorage.getItem('fontSize') ?? DefaultFontSize
@@ -32,3 +38,6 @@ document.body.style.fontSize = fontSize + 'px'
 // Add font to page. Uses Google Font as preference, but falls back to built-in fonts
 document.head.innerHTML += `<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
 				href="https://fonts.googleapis.com/css2?family=${encodeURIComponent(font)}&display=swap">`
+
+if(new URL(location.href).pathname == '/')
+	document.getElementById('mobileHome').style.display = 'none'

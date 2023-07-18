@@ -27,12 +27,14 @@
 	<body class="preload" onload="document.body.classList.remove('preload')">
 		<!-- Navigation -->
 		<nav>
-			<a href="/">Home</a>
-			<a href="/posts">Posts</a>
+			<span id="links">
+				<a href="/">Home</a>
+				<a href="/posts">Posts</a>
 
-			@if(auth)
-			<a href="/drafts">Drafts</a>
-			@endif
+				@if(auth)
+				<a href="/drafts">Drafts</a>
+				@endif
+			</span>
 
 			<span id="rightHand">
 				<div id="search">
@@ -53,6 +55,9 @@
 				</button>
 			</span>
 		</nav>
+
+		<button id="mobileHome" class="mobile-only secondary" onclick="location.href = '/'"><i class="fa-solid fa-home"></i></button>
+		<button id="mobileMenu" class="mobile-only secondary" onclick="OpenMobileMenu()"><i class="fa-solid fa-bars"></i></button>
 
 		<!-- Content -->
 		<section id="content">

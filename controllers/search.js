@@ -41,7 +41,8 @@ ShowSearchResults = async (req, res, query) =>
 	let totalPages = Math.ceil(allPosts.length / MaxPostsPerPage)
 	let currentPage = Math.min(Math.max(req.query?.page ?? 1, 1), totalPages)
 
-	posts = posts.limit(MaxPostsPerPage).skip((currentPage - 1) * MaxPostsPerPage)
+	if(totalPages > 0)
+		posts = posts.limit(MaxPostsPerPage).skip((currentPage - 1) * MaxPostsPerPage)
 	
 	// Finalise posts data
 	posts = await posts
