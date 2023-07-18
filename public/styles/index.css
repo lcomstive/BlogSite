@@ -26,12 +26,18 @@
 	text-decoration: none;
 	padding: var(--post-padding);
 	border-radius: var(--border-radius);
+	padding-bottom: calc(var(--post-padding) * 2);
 }
 
-.post-title { margin: 0; }
+.post-title
+{
+	font-size: 1em;
+	margin: 0;
+}
 
 .post-description
 {
+	font-size: 0.8em;
 	margin: 0;
 	color: var(--secondary-colour);
 	margin-bottom: 1.3em;
@@ -42,6 +48,10 @@
 	margin: 0;
 	font-size: 0.75em;
 	opacity: var(--hover-opacity);
+
+	position: absolute;
+	bottom: 15px;
+	left: 15px;
 }
 
 #see-more
@@ -50,6 +60,7 @@
 	height: 1.5em;
 	box-shadow: none;
 	min-height: unset;
+	font-size: 0.8em;
 }
 
 #see-more:hover
