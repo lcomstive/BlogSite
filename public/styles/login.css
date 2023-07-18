@@ -17,3 +17,11 @@ label
 	width: 100%;
 	padding: 10px;
 }
+
+.error
+{
+	width: 100%;
+	font-size: 0.8em;
+	text-align: center;
+	opacity: var(--hover-opacity);
+}

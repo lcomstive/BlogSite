@@ -23,5 +23,9 @@
 		Login
 		@endif
 	</button>
+
+	@if(error)
+	<p class="error">{{ error }}</p>
+	@endif
 </form>
 @endsection

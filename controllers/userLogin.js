@@ -6,6 +6,15 @@ const User = require('../database/models/User')
 // All other accounts must be created by a logged in user at /users/
 let firstTimeSetup = false
 
+RenderLogin = (res, error = null) =>
+{
+	res.render('login', {
+		error,
+		firstTimeSetup,
+		production: process.env.PRODUCTION ?? false
+	})
+}
+
 module.exports =
 {
 	init: () =>
@@ -24,7 +33,7 @@ module.exports =
 		if(req.session?.userID ?? false)
 			res.redirect('/') // Already logged in
 		else
-			res.render('login', { firstTimeSetup, production: process.env.PRODUCTION ?? false })
+			RenderLogin(res)
 	},
 
 	post: async (req, res) =>
@@ -32,7 +41,7 @@ module.exports =
 		const { username, password } = req.body
 
 		// Search for user matching username, matching case-INsensitive regex
-		let user = await User.findOne({ username: new RegExp(username, 'i') })
+		let user = username ? await User.findOne({ username: new RegExp(username, 'i') }) : null
 
 		if(firstTimeSetup)
 		{
@@ -42,7 +51,7 @@ module.exports =
 
 		if(!user)
 		{
-			res.status(400).json({ 'error': 'User not found' })
+			RenderLogin(res, 'User not found')
 			return;
 		}
 
@@ -50,7 +59,7 @@ module.exports =
 		{
 			if(!same)
 			{
-				res.status(400).json({ 'error': 'Incorrect password' })
+				RenderLogin(res, 'Incorrect password')
 				return;
 			}
 
