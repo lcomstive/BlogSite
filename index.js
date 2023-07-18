@@ -18,7 +18,7 @@ let mongoIP = process.env.MONGO_IP || "127.0.0.1"
 let mongoPort = process.env.MONGO_PORT || 27017
 let dbName = process.env.MONGO_DBNAME || 'blog'
 mongoose.connect(`mongodb://${mongoIP}:${mongoPort}/${dbName}`,
-					{ useNewUrlParser: true, autoIndex: !process.env.PRODUCTION })
+					{ useNewUrlParser: true, autoIndex: true })
 	.then(() => console.log('Connected to Mongo'))
 	.catch(err => console.error('Failed to connect to Mongo database', err))
 
