@@ -38,7 +38,9 @@
 @endsection
 
 @section('content')
+	@if(searchQuery || tag)
 	<h1>Results for <span class="subtext">'{{ searchQuery ?? tag }}'<span></h1>
+	@endif
 
 	@if(posts)
 	<span id="searchParams">
@@ -64,9 +66,7 @@
 
 	<section class="posts-list">
 		@each(post in posts)
-			@if(post.isActive)
-				@include('layouts/postPreview.edge')
-			@endif
+			@include('layouts/postPreview.edge')
 		@endeach
 	</section>
 	@else

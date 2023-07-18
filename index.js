@@ -74,9 +74,10 @@ app.use(expressSession({
 // Routing
 app.get('/', require('./controllers/homePage'))
 
-const allPosts = require('./controllers/allPosts')
-app.get('/posts', (req, res) => allPosts(req, res, 'allPosts'))
-app.get('/drafts', auth, (req, res) => allPosts(req, res, 'allDrafts'))
+const searchController = require('./controllers/search')
+
+app.get('/posts', searchController.allPosts)
+app.get('/drafts', auth, searchController.allDrafts)
 
 const newPost = require('./controllers/newPost')
 app.get('/post/new', auth, newPost.get)
@@ -101,7 +102,6 @@ app.post('/users', auth, userController.addNew)
 
 app.get('/logout', auth, require('./controllers/userLogout'))
 
-const searchController = require('./controllers/search')
 app.get('/tag/:tag', searchController.tag)
 app.get('/search/:query', searchController.general)
 

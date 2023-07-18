@@ -64,7 +64,10 @@ ShowSearchResults = async (req, res, query) =>
 
 module.exports =
 {
-	general: (req, res) => ShowSearchResults(req, res, { $text: { $search: req.params.query }}),
+	allPosts: (req, res)  => ShowSearchResults(req, res, { isActive: true }),
+	allDrafts: (req, res) => ShowSearchResults(req, res, { isActive: false }),
 
-	tag: (req, res) => ShowSearchResults(req, res, { tags: { $regex: new RegExp(req.params.tag, 'i') }})
+	general: (req, res) => ShowSearchResults(req, res, { $text: { $search: req.params.query }, isActive: true }),
+
+	tag: (req, res) => ShowSearchResults(req, res, { tags: { $regex: new RegExp(req.params.tag, 'i') }, isActive: true})
 }
