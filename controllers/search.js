@@ -1,3 +1,4 @@
+const MaxPostsPerPage = 9
 const Post = require('../database/models/Post')
 
 const GetDateToString = (date) =>
@@ -13,7 +14,7 @@ const GetDateToString = (date) =>
 }
 
 ShowSearchResults = async (req, res, query) =>
-{	
+{
 	// Limit to date range
 	let dateMin = req.query?.min
 	let dateMax = req.query?.max
@@ -34,26 +35,38 @@ ShowSearchResults = async (req, res, query) =>
 	// Sort
 	let sort = req.query?.sort ?? 'desc'
 	posts = posts.sort({ createdAt: sort == 'desc' ? -1 : 1 })
+
+	// Pagination
+	let allPosts = await Post.find(query)
+	let totalPages = Math.ceil(allPosts.length / MaxPostsPerPage)
+	let currentPage = Math.min(Math.max(req.query?.page ?? 1, 1), totalPages)
+
+	if(totalPages > 0)
+		posts = posts.limit(MaxPostsPerPage).skip((currentPage - 1) * MaxPostsPerPage)
+	
+	// Finalise posts data
+	posts = await posts
+
 	let renderOptions = {
 		sort,
 		tag: req.params.tag,
 		searchQuery: req.params.query,
 		auth: req.session.renderer,
-		production: process.env.PRODUCTION ?? false
-	}
+		production: process.env.PRODUCTION ?? false,
 
-	// Finalise posts data
-	posts = await posts
+		currentPage,
+		totalPages
+	}
 
 	// Pass date range back to client
 	if(posts?.length > 0)
 	{
 		renderOptions.posts = posts
 
-		if(dateMin == null && posts.length > 0)
-			dateMin = GetDateToString(posts[sort == 'desc' ? posts.length - 1 : 0].createdAt)
-		if(dateMax == null && posts.length > 0)
-			dateMax = GetDateToString(posts[sort == 'desc' ? 0 : posts.length - 1].createdAt)
+		if(dateMin == null && allPosts.length > 0)
+			dateMin = GetDateToString(allPosts[sort == 'desc' ? allPosts.length - 1 : 0].createdAt)
+		if(dateMax == null && allPosts.length > 0)
+			dateMax = GetDateToString(allPosts[sort == 'desc' ? 0 : allPosts.length - 1].createdAt)
 
 		renderOptions.dateMin = dateMin
 		renderOptions.dateMax = dateMax
@@ -64,7 +77,10 @@ ShowSearchResults = async (req, res, query) =>
 
 module.exports =
 {
-	general: (req, res) => ShowSearchResults(req, res, { $text: { $search: req.params.query }}),
+	allPosts: (req, res)  => ShowSearchResults(req, res, { isActive: true }),
+	allDrafts: (req, res) => ShowSearchResults(req, res, { isActive: false }),
 
-	tag: (req, res) => ShowSearchResults(req, res, { tags: { $regex: new RegExp(req.params.tag, 'i') }})
+	general: (req, res) => ShowSearchResults(req, res, { $text: { $search: req.params.query }, isActive: true }),
+
+	tag: (req, res) => ShowSearchResults(req, res, { tags: { $regex: new RegExp(req.params.tag, 'i') }, isActive: true })
 }

@@ -4,6 +4,7 @@ const edge = require('edge.js')
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const compression = require('compression')
 const expressEdge = require('express-edge')
 const mongoStore = require('connect-mongo')
 const fileUpload = require('express-fileupload')
@@ -12,6 +13,34 @@ const expressSession = require('express-session')
 const auth = require('./middleware/auth')
 
 require('dotenv').config()
+
+if(process.env.PRODUCTION)
+{
+	console.log('Minifying CSS')
+
+	const cleanCSS = require('clean-css')
+	let minifier = new cleanCSS()
+	fs.readdir('./public/styles', (err, filenames) =>
+	{
+		if(err)
+		{
+			console.error('Failed to iterate over CSS files for minification', err)
+			return
+		}
+
+		filenames.forEach(file =>
+		{
+			// Ignore minify output files
+			if(file.endsWith('.min.css')) return
+
+			let filepath = './public/styles/' + filenames[0]
+			fs.writeFileSync(
+				filepath.replaceAll('.css', '.min.css'),
+				minifier.minify(fs.readFileSync(filepath)).styles
+			)
+		})
+	})
+}
 
 // Set up MongoDB connection
 let mongoIP = process.env.MONGO_IP || "127.0.0.1"
@@ -26,6 +55,7 @@ mongoose.connect(`mongodb://${mongoIP}:${mongoPort}/${dbName}`,
 const app = new express()
 
 app.use(expressEdge)
+app.use(compression())
 app.use(bodyParser.json())
 app.use(express.static('public'))
 app.set('views', __dirname + '/views')
@@ -44,9 +74,13 @@ app.use(expressSession({
 // Routing
 app.get('/', require('./controllers/homePage'))
 
-const allPosts = require('./controllers/allPosts')
-app.get('/posts', (req, res) => allPosts(req, res, 'allPosts'))
-app.get('/drafts', auth, (req, res) => allPosts(req, res, 'allDrafts'))
+const searchController = require('./controllers/search')
+
+app.get('/posts', searchController.allPosts)
+app.get('/drafts', auth, searchController.allDrafts)
+
+app.get('/tag/:tag', searchController.tag)
+app.get('/search/:query', searchController.general)
 
 const newPost = require('./controllers/newPost')
 app.get('/post/new', auth, newPost.get)
@@ -70,10 +104,6 @@ app.get('/users', auth, userController.getAll)
 app.post('/users', auth, userController.addNew)
 
 app.get('/logout', auth, require('./controllers/userLogout'))
-
-const searchController = require('./controllers/search')
-app.get('/tag/:tag', searchController.tag)
-app.get('/search/:query', searchController.general)
 
 app.get('/settings', (req, res) => res.render('settings', { auth: req.session.renderer, production: process.env.PRODUCTION ?? false }))
 

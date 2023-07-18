@@ -24,15 +24,17 @@
 
 		@!section('styles')
 	</head>
-	<body>
+	<body class="preload" onload="document.body.classList.remove('preload')">
 		<!-- Navigation -->
 		<nav>
-			<a href="/">Home</a>
-			<a href="/posts">Posts</a>
+			<span id="links">
+				<a href="/">Home</a>
+				<a href="/posts">Posts</a>
 
-			@if(auth)
-			<a href="/drafts">Drafts</a>
-			@endif
+				@if(auth)
+				<a href="/drafts">Drafts</a>
+				@endif
+			</span>
 
 			<span id="rightHand">
 				<div id="search">
@@ -53,6 +55,9 @@
 				</button>
 			</span>
 		</nav>
+
+		<button id="mobileHome" class="mobile-only secondary" onclick="location.href = '/'"><i class="fa-solid fa-home"></i></button>
+		<button id="mobileMenu" class="mobile-only secondary" onclick="OpenMobileMenu()"><i class="fa-solid fa-bars"></i></button>
 
 		<!-- Content -->
 		<section id="content">
@@ -75,103 +80,7 @@
 			<p>© Lewis Comstive 2023</p>
 		</footer>
 
-		<!-- Settings load and apply -->
-		<script>
-			// Called immediately at script initialisation/load
-			const DefaultFont = 'Open Sans'
-			const DefaultFontSize = 18
-
-			let theme = localStorage.getItem('theme')
-			if(theme == null)
-			{
-				// Check if device has accessible preference for theme (light vs. dark mode)
-				if(window.matchMedia)
-				{
-					// Set to light or dark mode if device has preference
-					if (window.matchMedia('(prefers-color-scheme: dark)').matches)
-						theme = 'Dark'
-					else
-						theme = 'Light'
-				}
-				else // Device does not have any accessible preferences related to light/dark mode
-					theme = 'Dark'
-
-				localStorage.setItem('theme', theme)
-			}
-
-			// Listen for device theme preference changes
-			if(window.matchMedia)
-				window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event =>
-				{
-					let theme = localStorage.getItem('theme') ?? 'Light'
-					if(theme == 'Light' && event.matches)
-						theme = 'Dark'
-					else if(theme == 'Dark' && !event.matches)
-						theme = 'Light'
-					
-					localStorage.setItem('theme', theme)
-					document.documentElement.className = `theme-${theme.toLowerCase().replaceAll(' ', '-')}`
-				})
-
-			let font = localStorage.getItem('font') ?? DefaultFont
-			let fontSize = localStorage.getItem('fontSize') ?? DefaultFontSize
-
-			document.documentElement.className = `theme-${theme.toLowerCase().replaceAll(' ', '-')}`
-			document.body.style.fontFamily = `${font}, sans-serif`
-			document.body.style.fontSize = fontSize + 'px'
-
-			document.head.innerHTML += `<link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
-							href="https://fonts.googleapis.com/css2?family=${encodeURIComponent(font)}&display=swap">`
-		</script>
-
-		<!-- Search function -->
-		<script>
-			const searchInput = document.getElementById('search').getElementsByTagName('input')[0]
-			const searchButton = document.getElementById('search').getElementsByTagName('button')[0]
-
-			// When a key is pressed in the search input, resets this using setInterval.
-			// If fired, redirects to /search/:query
-			let searchInterval = null
-			const SearchInputDelay = 750 // milliseconds
-
-			ToggleSearchBar = () =>
-			{
-				searchInput.classList.toggle('active')
-				let active = searchInput.classList.contains('active')
-				
-				searchButton.innerHTML = `<i class="fa-solid fa-${active ? 'circle-xmark' : 'magnifying-glass'}"></i>`
-
-				if(!active && searchInterval != null)
-				{
-					clearInterval(searchInterval)
-					searchInterval = null
-				}
-
-				if(!active)
-					searchInput.value = ''
-			}
-
-			DoSearch = () =>
-			{
-				if(searchInput.value.length <= 3)
-					return // Search query not long enough
-				
-				location.href = `/search/${searchInput.value}`
-			}
-
-			ResetSearchInterval = () =>
-			{
-				if(searchInterval)
-					clearInterval(searchInterval)
-				searchInterval = setInterval(DoSearch, SearchInputDelay)
-			}
-
-			searchButton.addEventListener('click', ToggleSearchBar)
-			searchInput.addEventListener('keyup', ResetSearchInterval)
-
-			// If page loaded from a search query, open up the seach bar
-			if(searchInput.value != '')
-				ToggleSearchBar()
-		</script>
+		<script src="/js/app.js"></script>
+		<script src="/js/search.js"></script>
 	</body>
 </html>
