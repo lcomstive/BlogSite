@@ -46,8 +46,21 @@ if(process.env.PRODUCTION)
 let mongoIP = process.env.MONGO_IP || "127.0.0.1"
 let mongoPort = process.env.MONGO_PORT || 27017
 let dbName = process.env.MONGO_DBNAME || 'blog'
-mongoose.connect(`mongodb://${mongoIP}:${mongoPort}/${dbName}`,
-					{ useNewUrlParser: true, autoIndex: true })
+
+let connectionAddress = process.env.MONGO_ADDRESS
+if(!connectionAddress)
+{
+	if(!process.env.MONGO_USER)
+		console.warn("MONGO_USER environment variable not set, defaulting to 'admin'")
+	if(!process.env.MONGO_PASS)
+		console.error("MONGO_PASS environment variable not set! Cannot connect to database properly")
+
+	let mongoAuth = process.env.MONGO_PASS ? `${process.env.MONGO_USER || 'admin'}:${process.env.MONGO_PASS}@` : ''
+
+	connectionAddress = `mongodb://${mongoAuth}${mongoIP}:${mongoPort}/${dbName}`
+}
+
+mongoose.connect(connectionAddress, { useNewUrlParser: true, autoIndex: true })
 	.then(() => console.log('Connected to Mongo'))
 	.catch(err => console.error('Failed to connect to Mongo database', err))
 
@@ -98,6 +111,7 @@ app.get('/login', userLogin.get)
 app.post('/login', userLogin.post)
 
 const userController = require('./controllers/users')
+const { log } = require('console')
 app.get('/profile', auth, userController.get)
 app.post('/profile', auth, userController.update)
 app.get('/users', auth, userController.getAll)
