@@ -12,7 +12,7 @@ module.exports =
 	post: async (req, res) =>
 	{
 		req.body.content = req.body.content.replaceAll('\r\n', '\n')
-		req.body.url = encodeURIComponent(req.body.title.replaceAll(' ', '-'))
+		req.body.url = encodeURIComponent(req.body.title.replaceAll(' ', '-').replaceAll(/\'|\"/g, ''))
 
 		req.body.isActive = req.body.isActive != undefined && req.body.isActive.toLowerCase() == 'on'
 		
